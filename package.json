@@ -1,0 +1,22 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "configs.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "datatables.net": "^1.10.16",
+    "datatables.net-dt": "^1.10.16",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "npm": "^5.8.0",
+    "popper.js": "^1.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

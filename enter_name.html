@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Bookstore</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>
+        <link rel="stylesheet" href="web-fonts-with-css/css/fontawesome-all.min.css"/>
+    </head>
+    <body>
+    <!-- Begin create customer div -->
+    <div class="container-fluid" id="create-customer">
+        <div class="form-group row" id="new-customer-header">
+            <div class="col-md-4 offset-md-2">
+                <h3>Create a new customer</h3>
+            </div>
+        </div>
+        <div class="form-group row" id="name-email-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="name">Name</label>
+                <input class="form-control" id="name" type="text" placeholder="Name">
+            </div>
+            <div class="col-md-4">
+                <label for="email">Email</label>
+                <input class="form-control" id="email" type="text" placeholder="Email">
+            </div>
+        </div>
+        <div class="form-group row" id="username-password-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="username">Username</label>
+                <input class="form-control" id="username" type="text" placeholder="Username">
+            </div>
+            <div class="col-md-4">
+                <label for="password">Password</label>
+                <input class="form-control" id="password" type="text" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group row" id="address-phone-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="address">Address</label>
+                <input class="form-control" id="address" type="text" placeholder="Address">
+            </div>
+            <div class="col-md-4">
+                <label for="phone">Phone Number</label>
+                <input class="form-control" id="phone" type="text" placeholder="Phone Number">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1 offset-md-5">
+                <button class="form-control btn-primary" id="btn-save" disabled>Save</button>
+            </div>
+            <div class="col-md-1">
+                <button class="form-control btn-danger" id="btn-clear-customer" disabled>Clear</button>
+            </div>
+        </div>
+    </div>
+    <!-- End create customer div -->
+    <div class="container-fluid">
+        <div class="form-group row" id="toggle-customer-btn-row">
+            <div class="col-md-2 offset-md-2">
+                <button class="form-control btn-primary" id="toggle-customer-btn">Create New Customer</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group row" id="current-customers-header">
+        <div class="col-md-4 offset-md-2">
+            <h3>Current Customers</h3>
+        </div>
+    </div>
+    <div class="col-md-8 offset-md-2">
+        <table id="table-id" class="display">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Select</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </tfoot>
+        </table>
+    </div>
+    <hr>
+    <!-- Begin create item div -->
+    <div class="container-fluid" id="create-item">
+        <div class="form-group row" id="new-item-header">
+            <div class="col-md-4 offset-md-2">
+                <h3>Create a new item</h3>
+            </div>
+        </div>
+        <div class="form-group row" id="name-publisher-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="name-item">Name</label>
+                <input class="form-control" id="name-item" type="text" placeholder="Name">
+            </div>
+            <div class="col-md-4">
+                <label for="publisher">Publisher</label>
+                <input class="form-control" id="publisher" type="text" placeholder="Publisher">
+            </div>
+        </div>
+        <div class="form-group row" id="type-subject-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="type">Type</label>
+                <input class="form-control" id="type" type="text" placeholder="Type">
+            </div>
+            <!-- <div class="col-md-4">
+                <label for="subject">Subject</label>
+                <input class="form-control" id="subject" type="text" placeholder="Subject"> Replace this with a dropdown? 
+            </div> -->
+            <div class ="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="item-subject-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Subject
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                      <a class="dropdown-item" href="javascript:void(0);">Action</a>
+                      <a class="dropdown-item" href="javascript:void(0);">Mystery</a>
+                      <a class="dropdown-item" href="javascript:void(0);">Romance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row" id="description-row">
+            <div class="col-md-8 offset-md-2">
+                <label for="description">Description</label>
+                <input class="form-control" id="description" type="text" placeholder="Description">
+            </div>
+        </div>
+        <div class="form-group row" id="item-image-row">
+            <div class="col-md-8 offset-md-2">
+                <label for="item-image">Item image</label>
+                <input class="form-control" id="item-image" type="text" placeholder="URL of item image.">
+            </div>
+        </div>
+        <div class="form-group row" id="num-price-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="num-avail">Number available</label>
+                <input class="form-control" id="num-avail" type="text" placeholder="Number of item currently in stock.">
+            </div>
+            <div class="col-md-4">
+                <label for="price">Price</label>
+                <input class="form-control" id="price" type="text" placeholder="Price of item. For example: '9.99'">
+            </div>
+        </div>
+    </div>
+    <!-- End create item div -->
+    <div class="container-fluid">
+        <div class="form-group row" id="toggle-item-btn-row">
+            <div class="col-md-2 offset-md-2">
+                <button class="form-control btn-primary" id="toggle-item-btn">Create New Item</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+    <script type="text/javascript" src="js/enter_name.js"></script>
+    </body>
+</html>
