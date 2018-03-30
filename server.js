@@ -20,7 +20,9 @@ app.use(function(err, req, res, next) {
 
 // assign route files to variables
 var customer = require('./routes/customer');
+var item = require('./routes/item');
 
-app.use('/customer',allowCrossDomain, customer);
+app.use('/customer', allowCrossDomain, customer);
+app.use('/item', allowCrossDomain, item);
 
 app.listen(5252);
