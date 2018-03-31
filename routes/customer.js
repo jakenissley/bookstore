@@ -2,11 +2,12 @@ var express = require('express');
 var connection = require('../dbConnection');
 var router = express.Router();
 
-router.get('/:customer_number', function(req, res) {
+/* No Content 
+router.get('/:customer_number', function (req, res) {
   var customer_id = req.params.customer_number
-  const query = 'select first_name, last_name from customer where id = ?';
+  const query = 'select Name from customer where Id_no = ?';
   console.log(customer_id);
-  connection.query(query,[customer_id], function(err, rows, fields) {
+  connection.query(query, [customer_id], function (err, rows, fields) {
     if (err) {
       console.log(err)
       res.status(400).send("Query error.");
@@ -18,11 +19,11 @@ router.get('/:customer_number', function(req, res) {
       }
     }
   });
-});
+}); */
 
-router.get('/customers/all', function(req, res) {
+router.get('/customers/all', function (req, res) {
   const query = "SELECT * FROM customer";
-  connection.query(query, function(err, rows, fields) {
+  connection.query(query, function (err, rows, fields) {
     if (err) {
       //console.log(err);
       res.status(400).send("customer/customers/all error: error retrieving customer table");
@@ -52,26 +53,25 @@ router.post('/', function (req, res) {
     Password: req.body.password,
     //Created_date: "NOW()", // mysql command for current date
     Email: req.body.email
-   };
+  };
 
-   if(newCustomer.Name == "" || newCustomer.Phone_no == "" || newCustomer.Address == "" || newCustomer.Username == "" || newCustomer.Password == "" 
-      || newCustomer.Email == "")
-   {
-     res.status(406).send("Blank input.");
-   }
-   else{
-        connection.query('INSERT INTO customer SET ?', newCustomer, function (err, resp) {
-     if (err){
-       console.log(err);
-       res.status(400).send("Insertion error.");
-     } else {
-       res.send('Save succesfull');
+  if (newCustomer.Name == "" || newCustomer.Phone_no == "" || newCustomer.Address == "" || newCustomer.Username == "" || newCustomer.Password == ""
+    || newCustomer.Email == "") {
+    res.status(406).send("Blank input.");
+  }
+  else {
+    connection.query('INSERT INTO customer SET ?', newCustomer, function (err, resp) {
+      if (err) {
+        console.log(err);
+        res.status(400).send("Insertion error.");
+      } else {
+        res.send('Save succesfull');
       }
     });
-   }
- });
+  }
+});
 
-router.put('/', function(req, res) {
+router.put('/', function (req, res) {
   console.log('got here');
   res.send('complete');
 });
