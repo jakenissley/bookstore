@@ -21,15 +21,15 @@ router.get('/:customer_number', function (req, res) {
   });
 }); */
 
-router.get('/customers/all', function (req, res) {
+router.get('/all', function (req, res) {
   const query = "SELECT * FROM customer";
   connection.query(query, function (err, rows, fields) {
     if (err) {
       //console.log(err);
-      res.status(400).send("customer/customers/all error: error retrieving customer table");
+      res.status(400).send("customer/all error: error retrieving customer table");
     } else {
       if (rows.length > 0) {
-        let returnData = {}; // used to not have "let" - if doesn't work remove "let"
+        let returnData = {}; 
         returnData['sEcho'] = 1;
         returnData['iTotalRecords'] = rows.length;
         returnData['iTotalDisplayRecords'] = rows.length;

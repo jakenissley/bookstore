@@ -21,7 +21,7 @@ function format(d) {
 
 $(document).ready(function () {
     var table = $('#table-id').DataTable({
-        ajax: "http://localhost:5252/customer/customers/all",
+        ajax: "http://localhost:5252/customer/all",
 
         "columns": [
             {
@@ -142,6 +142,8 @@ function saveClick() {
 }
 $("#btn-save").click(saveClick);
 
+// getClick and btn-get no longer used
+/*
 function getClick() {
     var id = $("#id-box").val();
     clearBoxes();
@@ -162,6 +164,7 @@ function getClick() {
     });
 }
 $("#btn-get").click(getClick);
+*/
 
 // Check if text is entered in all customer data boxes, and enable save button if non-empty
 function checkAllCustomerFieldsNonEmpty() {
@@ -206,19 +209,4 @@ $("#address").on('input', function (e) {
 });
 $("#phone").on('input', function (e) {
     checkAllCustomerFieldsNonEmpty();
-});
-
-// Check if text is entered in id-box, and enable get button if non-empty
-function checkIDNonEmpty() {
-    let id_text = $("#id-box").val();
-
-    if (id_text != "") {
-        $("#btn-get").prop('disabled', false); // Enable the get button
-    }
-    else {
-        $("#btn-get").prop('disabled', true); // Disable the get button if empty
-    }
-}
-$("#id-box").on('input', function (e) {
-    checkIDNonEmpty();
 });
