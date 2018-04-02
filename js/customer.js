@@ -5,14 +5,20 @@ function format(d) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
+        '<td>Name:</td>' +
+        '<td>' + d.Name + '</td>' +
         '<td>Username:</td>' +
         '<td>' + d.Username + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Address:</td>' +
         '<td>' + d.Address + '</td>' +
+        '<td>Email:</td>' +
+        '<td>' + d.Email + '</td>' +
         '</tr>' +
         '<tr>' +
+        '<td>ID:</td>' +
+        '<td>' + d.Id_no + '</td>' +
         '<td>Phone Number:</td>' +
         '<td>' + d.Phone_no + '</td>' +
         '</tr>' +
@@ -34,6 +40,7 @@ $(document).ready(function () {
                 },
                 width: "10%"
             },
+            { data: "Id_no" },
             { data: "Name" },
             { data: "Email" }
         ]

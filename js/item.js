@@ -48,7 +48,7 @@ $(document).ready(function () {
             { data: "Item_id" },
             { data: "Name" },
             { data: "Type" },
-            { data: "Price"}
+            { data: "Price" }
         ]
     });
     $('#table-id tbody').on('click', 'tr', function () {
@@ -104,9 +104,11 @@ function clearItemClick() {
     $("#name-item").val(""); //clear name box
     $("#publisher").val("");
     $("#type").val("");
-    $("#password").val("");
+    $("#subject").val("");
     $("#description").val("");
     $("#item-image").val("");
+    $("#num-avail").val("");
+    $("#price").val("");
     $("#btn-clear-item").prop('disabled', true); // disable clear button
     $("#btn-save").prop('disabled', true); // disable save button
 }
@@ -115,20 +117,23 @@ $("#btn-clear-item").click(clearItemClick);
 function saveClick() {
     $("#btn-save").prop('disabled', true);
     $("#btn-save").removeClass("btn-primary").addClass("btn-danger");
-    let name_input = $("#name").val();
-    let phone_input = $("#phone").val();
-    let address_input = $("#address").val();
-    let username_input = $("#username").val();
-    let password_input = $("#password").val();
-    let email_input = $("#email").val();
+    let name_input = $("#name-item").val();
+    let pub_input = $("#publisher").val();
+    let type_input = $("#type").val();
+    let subject_input = $("#subject").val();
+    let desc_input = $("#description").val();
+    let image_input = $("#item-image").val();
+    let avail_input = $("#num-avail").val();
+    let price_input = $("#price").val();
 
-    if (name_input == "" || phone_input == "" || address_input == "" || username_input == "" || password_input == "" || email_input == "") {
+    if (name_input == "" || pub_input == "" || type_input == "" || subject_input == "" || description_input == "" || image_input == "" || avail_input == "" || price_input == "") {
         alert("Please enter all information.");
     }
     else {
         var data = {
-            name: name_input, phone: phone_input, address: address_input,
-            username: username_input, password: password_input, email: email_input
+            name: name_input, publisher: pub_input, type: type_input,
+            subject: subject_input, description: desc_input, image: image_input,
+            num_avail: avail_input, price: price_input
         };
 
         $.ajax({
@@ -181,15 +186,17 @@ $("#btn-get").click(getClick);
 
 // Check if text is entered in all item data boxes, and enable save button if non-empty
 function checkAllitemFieldsNonEmpty() {
-    let name_text = $("#name").val();
-    let email_text = $("#email").val();
-    let username_text = $("#username").val();
-    let password_text = $("#password").val();
-    let address_text = $("#address").val();
-    let phone_text = $("#phone").val();
+    let name_text = $("#name-item").val();
+    let pub_text = $("#publisher").val();
+    let type_text = $("#type").val();
+    let subject_text = $("#subject").val();
+    let desc_text = $("#description").val();
+    let image_text = $("#item-image").val();
+    let avail_text = $("#num-avail").val();
+    let price_text = $("#price").val();
 
     // Check if all boxes are non-empty
-    if (name_text != "" && email_text != "" && username_text != "" && password_text != "" && address_text != "" && phone_text != "") {
+    if (name_text != "" && pub_text != "" && type_text != "" && subject_text != ""&& desc_text != "" && image_text != "" && avail_text != "" && price_text != "") {
         $("#btn-save").prop('disabled', false); // Enable the save button
     }
     else {
@@ -197,7 +204,7 @@ function checkAllitemFieldsNonEmpty() {
     }
 
     // Check if at least one box has text
-    if (name_text != "" || email_text != "" || username_text != "" || password_text != "" || address_text != "" || phone_text != "") {
+    if (name_text != "" || pub_text != "" || type_text != "" || subject_text != "" || desc_text != "" || image_text != "" || avail_text != "" || price_text != "") {
         $("#btn-clear-item").prop('disabled', false); // Enable the clear button
     }
     else {
@@ -205,21 +212,29 @@ function checkAllitemFieldsNonEmpty() {
     }
 }
 // Call checkAllitemFieldsNonEmpty whenever any text boxes modified
-$("#name").on('input', function (e) {
+$("#name-item").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
-$("#email").on('input', function (e) {
+$("#publisher").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
-$("#username").on('input', function (e) {
+$("#subject").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
-$("#password").on('input', function (e) {
+$("#type").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
-$("#address").on('input', function (e) {
+$("#description").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
-$("#phone").on('input', function (e) {
+$("#item-image").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
+$("#num-avail").on('input', function (e) {
+    checkAllitemFieldsNonEmpty();
+});    
+$("#price").on('input', function (e) {
+    checkAllitemFieldsNonEmpty();
+
+});
+
