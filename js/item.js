@@ -5,16 +5,27 @@ function format(d) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
-        '<td>Username:</td>' +
+        '<td>ID:</td>' +
         '<td>' + d.Item_id + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Address:</td>' +
+        '<td>Name:</td>' +
         '<td>' + d.Name + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Phone Number:</td>' +
+        '<td>Publisher:</td>' +
+        '<td>' + d.Publisher + '</td>' +
+        '<td>Type:</td>' +
         '<td>' + d.Type + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Subject:</td>' +
+        '<td>' + d.Subject + '</td>' +
+        '<td>Description:</td>' +
+        '<td>' + d.Description + '</td>' +
+        '</tr>' +
+        '<td>Number Available:</td>' +
+        '<td>' + d.No_available + '</td>' +
+        '<td>Price:</td>' +
+        '<td>' + "$" + d.Price + '</td>' +
         '</tr>' +
         '</table>';
 }
@@ -36,7 +47,8 @@ $(document).ready(function () {
             },
             { data: "Item_id" },
             { data: "Name" },
-            { data: "Type" }
+            { data: "Type" },
+            { data: "Price"}
         ]
     });
     $('#table-id tbody').on('click', 'tr', function () {
@@ -89,14 +101,14 @@ $("#toggle-item-btn").click(function () {
 
 // Clear item boxes when btn-clear-item button clicked
 function clearItemClick() {
-    $("#name").val(""); //clear name box
-    $("#email").val("");
-    $("#username").val("");
+    $("#name-item").val(""); //clear name box
+    $("#publisher").val("");
+    $("#type").val("");
     $("#password").val("");
-    $("#address").val("");
-    $("#phone").val("");
+    $("#description").val("");
+    $("#item-image").val("");
     $("#btn-clear-item").prop('disabled', true); // disable clear button
-    $("#btn-save").prop('disabled', true); // disable clear button
+    $("#btn-save").prop('disabled', true); // disable save button
 }
 $("#btn-clear-item").click(clearItemClick);
 
