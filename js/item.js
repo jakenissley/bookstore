@@ -126,7 +126,7 @@ function saveClick() {
     let avail_input = $("#num-avail").val();
     let price_input = $("#price").val();
 
-    if (name_input == "" || pub_input == "" || type_input == "" || subject_input == "" || description_input == "" || image_input == "" || avail_input == "" || price_input == "") {
+    if (name_input == "" || pub_input == "" || type_input == "" || subject_input == "" || desc_input == "" || image_input == "" || avail_input == "" || price_input == "") {
         alert("Please enter all information.");
     }
     else {
@@ -159,30 +159,6 @@ function saveClick() {
 
 }
 $("#btn-save").click(saveClick);
-
-// getClick and btn-get no longer used
-/*
-function getClick() {
-    var id = $("#id-box").val();
-    clearBoxes();
-
-    $.ajax({
-        url: "http://localhost:5252/item/" + id,
-        type: "get",
-        contentType: "application/json",
-        success: function (response) {
-            data = JSON.parse(response);
-            console.log(data);
-            $("#first-name").val(data[0].first_name);
-            $("#last-name").val(data[0].last_name);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-        }
-    });
-}
-$("#btn-get").click(getClick);
-*/
 
 // Check if text is entered in all item data boxes, and enable save button if non-empty
 function checkAllitemFieldsNonEmpty() {
