@@ -1,4 +1,5 @@
 $("#create-customer").hide(); // Hide create-customer div by
+$("#deleteModal").modal('hide'); // Hide modal by default
 
 /* Formatting function for row details - modify as you need */
 function format(d) {
@@ -149,29 +150,11 @@ function saveClick() {
 }
 $("#btn-save").click(saveClick);
 
-// getClick and btn-get no longer used
-/*
-function getClick() {
-    var id = $("#id-box").val();
-    clearBoxes();
-
-    $.ajax({
-        url: "http://localhost:5252/customer/" + id,
-        type: "get",
-        contentType: "application/json",
-        success: function (response) {
-            data = JSON.parse(response);
-            console.log(data);
-            $("#first-name").val(data[0].first_name);
-            $("#last-name").val(data[0].last_name);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-        }
-    });
+// Send ID to AJAX to send DELETE Query
+function deleteClick(){
+    $("#deleteModal").modal(show);
 }
-$("#btn-get").click(getClick);
-*/
+$("#i.fa.fa-trash").click(deleteClick);
 
 // Check if text is entered in all customer data boxes, and enable save button if non-empty
 function checkAllCustomerFieldsNonEmpty() {

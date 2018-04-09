@@ -2,25 +2,6 @@ var express = require('express');
 var connection = require('../dbConnection');
 var router = express.Router();
 
-/* No Content 
-router.get('/:customer_number', function (req, res) {
-  var customer_id = req.params.customer_number
-  const query = 'select Name from customer where Id_no = ?';
-  console.log(customer_id);
-  connection.query(query, [customer_id], function (err, rows, fields) {
-    if (err) {
-      console.log(err)
-      res.status(400).send("Query error.");
-    } else {
-      if (rows.length > 0) {
-        res.send(JSON.stringify(rows));
-      } else {
-        res.status(400).send("No Content.");
-      }
-    }
-  });
-}); */
-
 router.get('/all', function (req, res) {
   const query = "SELECT * FROM customer";
   connection.query(query, function (err, rows, fields) {
