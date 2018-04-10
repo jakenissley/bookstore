@@ -40,7 +40,7 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false,
                 "render": function (data, type, row, meta) {
-                    var a = '<a onclick="doSelectName(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Select Name"><i class="fa fa-check"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Name"><i class="fa fa-trash"></i></a>'
+                    var a = '<a onclick="doSelectName(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>'
                     return a;
                 },
                 width: "10%"
@@ -61,10 +61,11 @@ $(document).ready(function () {
         console.log(this);
     });
 
-    $('#table-id tbody').on('click', 'tr', function () {
+    $('#table-id tbody').on('click', '#drop', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-
+        
+        $(this, '#drop').toggleClass("fa-angle-right fa-angle-down");
         if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
@@ -82,8 +83,8 @@ function doSelectName(id) {
     console.log(id);
 }
 
+
 function doAddressDel(id) {
-    console.log(id);
 }
 
 // Toggle visibility of add new item div

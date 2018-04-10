@@ -1,5 +1,5 @@
 $("#create-customer").hide(); // Hide create-customer div by
-$("#deleteModal").modal('hide'); // Hide modal by default
+//$("#deleteModal").modal('hide'); // Hide modal by default
 
 /* Formatting function for row details - modify as you need */
 function format(d) {
@@ -36,7 +36,7 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false,
                 "render": function (data, type, row, meta) {
-                    var a = '<a onclick="doSelectName(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Select Name"><i class="fa fa-check"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Name"><i class="fa fa-trash"></i></a>'
+                    var a = '<a onclick="doSelectName(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
                     return a;
                 },
                 width: "10%"
@@ -55,11 +55,12 @@ $(document).ready(function () {
         }
         console.log(this);
     });
-
-    $('#table-id tbody').on('click', 'tr', function () {
+    
+    $('#table-id tbody').on('click', '#drop', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-
+        
+        $(this, '#drop').toggleClass("fa-angle-right fa-angle-down");
         if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
@@ -73,12 +74,18 @@ $(document).ready(function () {
     });
 });
 
+
+
 function doSelectName(id) {
     console.log(id);
 }
 
+// Send ID to AJAX to send DELETE Query
 function doAddressDel(id) {
-    console.log(id);
+    $("#deleteModal").modal('toggle');
+    $("#confirm-del-btn").click(function () {
+        alert("Deleted.");
+    });
 }
 
 // Toggle visibility of add new customer div
@@ -150,11 +157,8 @@ function saveClick() {
 }
 $("#btn-save").click(saveClick);
 
-// Send ID to AJAX to send DELETE Query
-function deleteClick(){
-    $("#deleteModal").modal(show);
-}
-$("#i.fa.fa-trash").click(deleteClick);
+
+
 
 // Check if text is entered in all customer data boxes, and enable save button if non-empty
 function checkAllCustomerFieldsNonEmpty() {
