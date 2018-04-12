@@ -120,6 +120,7 @@ function saveClick() {
     $("#btn-save").removeClass("btn-primary").addClass("btn-danger");
     let name_input = $("#name-item").val();
     let pub_input = $("#publisher").val();
+    console.log(pub_input);
     let type_input = $("#type").val();
     let subject_input = $("#subject").val();
     let desc_input = $("#description").val();
