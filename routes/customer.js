@@ -10,7 +10,7 @@ router.get('/all', function (req, res) {
       res.status(400).send("customer/all error: error retrieving customer table");
     } else {
       if (rows.length > 0) {
-        let returnData = {}; 
+        let returnData = {};
         returnData['sEcho'] = 1;
         returnData['iTotalRecords'] = rows.length;
         returnData['iTotalDisplayRecords'] = rows.length;
@@ -23,8 +23,19 @@ router.get('/all', function (req, res) {
   });
 });
 
+router.post('/delete', function (req, res) {
+    connection.query('DELETE FROM customer WHERE Id_no = ?', req.body.id, function (err, resp) {
+      if (err) {
+        console.log(err);
+        res.status(400).send("Deletion error.");
+      } else {
+        res.send("Deletion successful.")
+      }
+    });
+});
+
 // Inserts customer into database
-router.post('/', function (req, res) {
+router.post('/add', function (req, res) {
   var newCustomer = {
     Name: req.body.name,
     Id_no: "default", //mysql handles what id to give customer
@@ -46,7 +57,7 @@ router.post('/', function (req, res) {
         console.log(err);
         res.status(400).send("Insertion error.");
       } else {
-        res.send('Save succesfull');
+        res.send('Save successful');
       }
     });
   }

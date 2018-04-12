@@ -36,7 +36,7 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false,
                 "render": function (data, type, row, meta) {
-                    var a = '<a onclick="doSelectName(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
+                    var a = '<a onclick="doSelectName(\'' + row.Id_no + '\')" data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.Id_no + '\',\'' + row.Name + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
                     return a;
                 },
                 width: "10%"
@@ -59,7 +59,7 @@ $(document).ready(function () {
     $('#table-id tbody').on('click', '#drop', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        
+
         $(this, '#drop').toggleClass("fa-angle-right fa-angle-down");
         if (row.child.isShown()) {
             // This row is already open - close it
@@ -80,12 +80,13 @@ function doSelectName(id) {
     console.log(id);
 }
 
-// Send ID to AJAX to send DELETE Query
-function doAddressDel(id) {
+function doAddressDel(id, name) {
     $("#deleteModal").modal('toggle');
     $("#confirm-del-btn").click(function () {
-        alert("Deleted.");
+        deleteClick(id);
     });
+    console.log("Id: " + id + " Name: " + name);
+    
 }
 
 // Toggle visibility of add new customer div
@@ -130,11 +131,11 @@ function saveClick() {
     else {
         var data = {
             name: name_input, phone: phone_input, address: address_input,
-            username: username_input, password: password_input, email: email_input
+            username: username_input, password: password_input, email: email_input, del: false,
         };
 
         $.ajax({
-            url: "http://localhost:5252/customer",
+            url: "http://localhost:5252/customer/add",
             type: "post",
             data: JSON.stringify(data),
             contentType: "application/json",
@@ -157,7 +158,24 @@ function saveClick() {
 }
 $("#btn-save").click(saveClick);
 
-
+// Send ID to AJAX to send DELETE Query
+function deleteClick(id) {
+    $.ajax({
+        url: "https://localhost:5252/customer/delete",
+        type: "post",
+        data: JSON.stringify(id),
+        contentType: "application/json",
+        success: function (response) {
+            // Refresh datatable without losing current page
+            var table = $('#table-id').DataTable();
+            table.ajax.reload(null, false);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+            alert("Unsuccessful.");
+        }
+    });
+}
 
 
 // Check if text is entered in all customer data boxes, and enable save button if non-empty
