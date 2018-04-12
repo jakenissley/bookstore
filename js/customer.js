@@ -160,10 +160,14 @@ $("#btn-save").click(saveClick);
 
 // Send ID to AJAX to send DELETE Query
 function deleteClick(id) {
+    var data = {
+        id_no: id
+    };
+    console.log("got here");
     $.ajax({
         url: "https://localhost:5252/customer/delete",
-        type: "post",
-        data: JSON.stringify(id),
+        type: "delete",
+        data: JSON.stringify(data),
         contentType: "application/json",
         success: function (response) {
             // Refresh datatable without losing current page
