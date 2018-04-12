@@ -24,7 +24,6 @@ router.get('/all', function (req, res) {
 });
 
 router.delete('/delete', function (req, res) {
-  console.log("got here");
     connection.query('DELETE FROM customer WHERE Id_no = ?', req.body.id_no, function (err, resp) {
       if (err) {
         console.log(err);

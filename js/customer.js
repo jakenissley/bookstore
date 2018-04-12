@@ -163,9 +163,8 @@ function deleteClick(id) {
     var data = {
         id_no: id
     };
-    console.log("got here");
     $.ajax({
-        url: "https://localhost:5252/customer/delete",
+        url: "http://localhost:5252/customer/delete",
         type: "delete",
         data: JSON.stringify(data),
         contentType: "application/json",
