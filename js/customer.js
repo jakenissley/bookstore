@@ -35,7 +35,7 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false,
                 "render": function (data, type, row, meta) {
-                    var a = '<a onclick="doSelectName(\'' + row.Id_no + '\')" data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.Id_no + '\',\'' + row.Name + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
+                    var a = '<a data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.Id_no + '\',\'' + row.Name + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
                     return a;
                 },
                 width: "10%"
@@ -44,15 +44,6 @@ $(document).ready(function () {
             { data: "Name" },
             { data: "Email" }
         ]
-    });
-    $('#table-id tbody').on('click', 'tr', function () {
-        console.log(table.row(this).data());
-    });
-    $('#table-id tbody').on('click', 'td', function () {
-        if (this == 'Select') {
-            console.log(table.cell(this).data());
-        }
-        console.log(this);
     });
     
     $('#table-id tbody').on('click', '#drop', function () {
@@ -73,19 +64,11 @@ $(document).ready(function () {
     });
 });
 
-
-
-function doSelectName(id) {
-    console.log(id);
-}
-
 function doAddressDel(id, name) {
     $("#deleteModal").modal('toggle');
     $("#confirm-del-btn").click(function () {
         deleteClick(id);
     });
-    console.log("Id: " + id + " Name: " + name);
-    
 }
 
 // Toggle visibility of add new customer div
