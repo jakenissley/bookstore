@@ -135,8 +135,7 @@ function saveClick() {
                 $("#btn-save").prop('disabled', false);
                 $("#btn-save").removeClass("btn-danger").addClass("btn-primary");
                 // Refresh datatable without losing current page
-                var table = $('#table-id').DataTable();
-                table.ajax.reload(null, false);
+                $('#table-id').DataTable().ajax.reload();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
@@ -148,7 +147,7 @@ function saveClick() {
 
         
     }
-
+    
 }
 $("#btn-save").click(saveClick);
 
