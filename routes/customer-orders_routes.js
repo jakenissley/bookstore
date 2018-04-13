@@ -16,6 +16,7 @@ router.get('/all', function (req, res) {
           returnData['iTotalDisplayRecords'] = rows.length;
           returnData['data'] = rows;
           res.send(JSON.stringify(returnData));
+          console.log(returnData);
         } else {
           res.status(204).send("No Content.")
         }
