@@ -56,14 +56,14 @@ router.post('/', function (req, res) {
             } else {
                 id = rows[rows.length-1].Item_id + 1;
                 var newAuthor = {
+                    Author_id: "default",
                     Author_name: req.body.author,
-                    Item_id: id,
-                    Author_id: "default"
+                    Item_id: id
                 };
                 var newDirector = {
+                    Director_id: "default",
                     Director_name: req.body.director,
-                    Item_id: id,
-                    Director_id: "default"
+                    Item_id: id
                 };
                 if(newAuthor.Author_name){
                     connection.query('INSERT INTO literature_author SET ?', newAuthor, function (err, resp) {
