@@ -23,8 +23,54 @@ router.get('/all', function (req, res) {
     });
 });
 
+//inserts the Author/Director
+router.post('/addauthor', function (req, res){
+    var newItem = {
+        Name: req.body.name,
+        Author_name: req.body.author,
+        Director_name: req.body.director
+    }
+    connection.query('SELECT Item_id FROM item WHERE Name = ?', newItem.Name, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+        } else {
+            id = rows[rows.length-1].Item_id;
+            var newAuthor = {
+                Author_id: "default",
+                Author_name: newItem.Author_name,
+                Item_id: id
+            };
+            var newDirector = {
+                Director_id: "default",
+                Director_name: newItem.Director_name,
+                Item_id: id
+            };
+            if(newAuthor.Author_name){
+                connection.query('INSERT INTO literature_author SET ?', newAuthor, function (err, resp) {
+                    if (err) {
+                        console.log(err);
+                        res.status(400).send("Insertion error.");
+                    } else {
+                        
+                    }
+                });
+            }
+            if(newDirector.Director_name){
+                connection.query('INSERT INTO media_director SET ?', newDirector, function (err, resp) {
+                    if (err) {
+                        console.log(err);
+                        res.status(400).send("Insertion error.");
+                    } else {
+                        
+                    }
+                });
+            }
+        }
+    });
+});
+
 // Inserts item into database
-router.post('/', function (req, res) {
+router.post('/additem', function (req, res) {
     var newItem = {
         Item_id: "default", //mysql handles what id to give item
         Name: req.body.name,
@@ -49,46 +95,7 @@ router.post('/', function (req, res) {
             } else {
                 res.send('Save succesfull');
             }
-        });
-        connection.query('SELECT Item_id FROM item WHERE Name = ?', newItem.Name, function (err, rows, fields) {
-            if (err) {
-                console.log(err);
-            } else {
-                id = rows[rows.length-1].Item_id + 1;
-                console.log(id);
-                var newAuthor = {
-                    Author_id: "default",
-                    Author_name: req.body.author,
-                    Item_id: id
-                };
-                var newDirector = {
-                    Director_id: "default",
-                    Director_name: req.body.director,
-                    Item_id: id
-                };
-                if(newAuthor.Author_name){
-                    connection.query('INSERT INTO literature_author SET ?', newAuthor, function (err, resp) {
-                        if (err) {
-                            console.log(err);
-                            res.status(400).send("Insertion error.");
-                        } else {
-                            
-                        }
-                    });
-                }
-                if(newDirector.Director_name){
-                    connection.query('INSERT INTO media_director SET ?', newDirector, function (err, resp) {
-                        if (err) {
-                            console.log(err);
-                            res.status(400).send("Insertion error.");
-                        } else {
-                            
-                        }
-                    });
-                }
-            }
-        });
-        
+        });  
     }
 });
 

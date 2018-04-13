@@ -114,8 +114,6 @@ function saveClick() {
     let image_input = $("#item-image").val();
     let avail_input = $("#num-avail").val();
     let price_input = $("#price").val();
-    let author_input = $("#author").val();
-    let director_input = $("#director").val();
 
     if (name_input === "" || pub_input === "" || type_input === "" || subject_input === "" || desc_input === "" || image_input === "" || avail_input === "" || price_input === "" ) {
         alert("Please enter all information.");
@@ -124,15 +122,16 @@ function saveClick() {
         var data = {
             name: name_input, publisher: pub_input, type: type_input,
             subject: subject_input, description: desc_input, image: image_input,
-            num_avail: avail_input, price: price_input, author: author_input, director: director_input
+            num_avail: avail_input, price: price_input
         };
 
         $.ajax({
-            url: "http://localhost:5252/item",
+            url: "http://localhost:5252/item/additem",
             type: "post",
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (response) {
+                addAuthor();
                 $("#btn-save").prop('disabled', false);
                 $("#btn-save").removeClass("btn-danger").addClass("btn-primary");
                 // Refresh datatable without losing current page
@@ -146,10 +145,30 @@ function saveClick() {
                 $("#btn-save").removeClass("btn-danger").addClass("btn-primary");
             }
         });
+
+        
     }
 
 }
 $("#btn-save").click(saveClick);
+
+function addAuthor() {
+    let name_input = $("#name-item").val();
+    let author_input = $("#author").val();
+    let director_input = $("#director").val();
+
+    var data = {
+        name: name_input, author: author_input, director: director_input
+    }
+    $.ajax({
+        url: "http://localhost:5252/item/addauthor",
+        type: "post",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function(response) {
+        },
+    });
+}
 
 // Check if text is entered in all item data boxes, and enable save button if non-empty
 function checkAllitemFieldsNonEmpty() {
