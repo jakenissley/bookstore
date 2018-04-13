@@ -29,6 +29,8 @@ $(document).ready(function () {
         }
         else {
             // Open this row
+            console.log(row.data());
+            // ajax get here using row.data()
             row.child(format(row.data())).show();
             tr.addClass('shown');
         }
