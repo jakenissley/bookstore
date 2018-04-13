@@ -2,7 +2,7 @@ $("#create-staff").hide(); // Hide create-staff div by default
 
 $(document).ready(function () {
     var table = $('#table-id').DataTable({
-        ajax: "http://localhost:5252/customer/all",
+        ajax: "http://localhost:5252/staff/all",
 
         "columns": [
             {
@@ -19,7 +19,8 @@ $(document).ready(function () {
             { data: "Position" },
             { data: "Salary" }
         ]
-    });
+    })
+});
 
 function saveClick() {
     $("#btn-save").prop('disabled', true);

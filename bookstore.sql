@@ -251,22 +251,22 @@ ALTER TABLE `item`
 --
 ALTER TABLE `literature_author`
   ADD PRIMARY KEY (`Author_id`),
-  ADD UNIQUE KEY `Item_id` (`Item_id`);
+  ADD KEY `Item_id` (`Item_id`);
 
 --
 -- Indexes for table `media_director`
 --
 ALTER TABLE `media_director`
   ADD PRIMARY KEY (`Director_id`),
-  ADD UNIQUE KEY `Item_id` (`Item_id`);
+  ADD KEY `Item_id` (`Item_id`);
 
 --
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`Order_id`),
-  ADD UNIQUE KEY `Item_id` (`Item_id`),
-  ADD UNIQUE KEY `Customer_id` (`Customer_id`),
+  ADD KEY `Item_id` (`Item_id`),
+  ADD KEY `Customer_id` (`Customer_id`),
   ADD KEY `Employee_ssn` (`Employee_ssn`);
 
 --
@@ -280,7 +280,7 @@ ALTER TABLE `publisher`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`Ssn`),
-  ADD UNIQUE KEY `Super_ssn` (`Super_ssn`);
+  ADD KEY `Super_ssn` (`Super_ssn`);
 
 --
 -- Indexes for table `subject`
@@ -306,7 +306,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `literature_author`
 --
 ALTER TABLE `literature_author`
-  MODIFY `Author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `media_director`
 --

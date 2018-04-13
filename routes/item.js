@@ -3,7 +3,7 @@ var connection = require('../dbConnection');
 var router = express.Router();
 
 router.get('/all', function (req, res) {
-    const query = "SELECT * FROM item";
+    const query = "(SELECT i.*, a.Author_name AS Author_name, s.Subject_name AS Subject_name FROM item i INNER JOIN subject s ON i.Subject = s.Subject_id INNER JOIN literature_author a ON i.Item_id = a.Item_id WHERE i.Type = 'Book' OR i.Type = 'Periodical') UNION (SELECT i.*, d.Director_name AS Director_name, s.Subject_name AS Subject_name FROM item i INNER JOIN subject s ON i.Subject = s.Subject_id INNER JOIN media_director d ON i.Item_id = d.Item_id WHERE i.Type = 'Movie')";
     connection.query(query, function (err, rows, fields) {
         if (err) {
             //console.log(err);
@@ -55,6 +55,7 @@ router.post('/', function (req, res) {
                 console.log(err);
             } else {
                 id = rows[rows.length-1].Item_id + 1;
+                console.log(id);
                 var newAuthor = {
                     Author_id: "default",
                     Author_name: req.body.author,

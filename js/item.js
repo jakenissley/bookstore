@@ -10,21 +10,22 @@ function format(d) {
         '<td>' + d.Item_id + '</td>' +
         '<td>Name:</td>' +
         '<td>' + d.Name + '</td>' +
+        '<td>Author/Dirctor Name:</td>' +
+        '<td>' + d.Author_name + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Publisher:</td>' +
         '<td>' + d.Publisher + '</td>' +
         '<td>Type:</td>' +
         '<td>' + d.Type + '</td>' +
+        '<td>Number Available:</td>' +
+        '<td>' + d.No_available + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Subject:</td>' +
-        '<td>' + d.Subject + '</td>' +
+        '<td>' + d.Subject_name + '</td>' +
         '<td>Description:</td>' +
         '<td>' + d.Description + '</td>' +
-        '</tr>' +
-        '<td>Number Available:</td>' +
-        '<td>' + d.No_available + '</td>' +
         '<td>Price:</td>' +
         '<td>' + "$" + d.Price + '</td>' +
         '</tr>' +
@@ -41,7 +42,7 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false,
                 "render": function (data, type, row, meta) {
-                    var a = '<a onclick="doSelectName(\'' + row.id + '\')" data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>'
+                    var a = '<a data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>'
                     return a;
                 },
                 width: "10%"
@@ -52,15 +53,6 @@ $(document).ready(function () {
             { data: "Price",
               render: $.fn.dataTable.render.number(',', '.', 2, '$') }
         ]
-    });
-    $('#table-id tbody').on('click', 'tr', function () {
-        console.log(table.row(this).data());
-    });
-    $('#table-id tbody').on('click', 'td', function () {
-        if (this == 'Select') {
-            console.log(table.cell(this).data());
-        }
-        console.log(this);
     });
 
     $('#table-id tbody').on('click', '#drop', function () {
@@ -80,10 +72,6 @@ $(document).ready(function () {
         }
     });
 });
-
-function doSelectName(id) {
-    console.log(id);
-}
 
 // Toggle visibility of add new item div
 $("#toggle-item-btn").click(function () {
@@ -120,7 +108,6 @@ function saveClick() {
     $("#btn-save").removeClass("btn-primary").addClass("btn-danger");
     let name_input = $("#name-item").val();
     let pub_input = $("#publisher").val();
-    console.log(pub_input);
     let type_input = $("#type").val();
     let subject_input = $("#subject").val();
     let desc_input = $("#description").val();
@@ -184,7 +171,6 @@ function checkAllitemFieldsNonEmpty() {
     else {
         $("#btn-save").prop('disabled', true); // Disable save button if one or both of boxes or empty
     }
-
     // Check if at least one box has text
     if (name_text != "" || pub_text != "" || type_text != "" || subject_text != "" || desc_text != "" || image_text != "" || avail_text != "" || price_text != "" || (author_text != "" || director_text != "")) {
         $("#btn-clear-item").prop('disabled', false); // Enable the clear button
