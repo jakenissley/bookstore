@@ -1,8 +1,31 @@
 $("#create-staff").hide(); // Hide create-staff div by default
 
+/* Formatting function for row details - modify as you need */
+function format(d) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>SSN:</td>' +
+        '<td>' + d.Ssn + '</td>' +
+        '<td>Super SSN:</td>' +
+        '<td>' + d.Superssn + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Birthday:</td>' +
+        '<td>' + d.Bdate + '</td>' +
+        '<td>Address:</td>' +
+        '<td>' + d.Address + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Sex:</td>' +
+        '<td>' + d.Sex + '</td>' +
+        '</tr>' +
+        '</table>';
+}
+
 $(document).ready(function () {
     var table = $('#table-id').DataTable({
-        ajax: "http://localhost:5252/customer/all",
+        ajax: "http://localhost:5252/staff/all",
 
         "columns": [
             {
@@ -10,16 +33,34 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false,
                 "render": function (data, type, row, meta) {
-                    var a = '<a onclick="doSelectName(\'' + row.Id_no + '\')" data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.Id_no + '\',\'' + row.Name + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
+                    var a = '<a data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.Id_no + '\',\'' + row.Name + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
                     return a;
                 },
                 width: "10%"
             },
             { data: "Name" },
             { data: "Position" },
-            { data: "Salary" }
+            { data: "Salary",
+              render: $.fn.dataTable.render.number( ',', '.', 2, '$' ) }
         ]
     });
+    $('#table-id tbody').on('click', '#drop', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        $(this, '#drop').toggleClass("fa-angle-right fa-angle-down");
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+});
 
 function saveClick() {
     $("#btn-save").prop('disabled', true);
@@ -39,7 +80,7 @@ function saveClick() {
     else {
         var data = {
             Name: name_text, Ssn: ssn_text, Bdate: birthday_text,
-            Address: address_text, Sex: sex_text, Salary: salary_text, Superssn: superssn_text, Position: position_text
+            Address: address_text, Sex: sex_text, Salary: salary_text, Super_ssn: superssn_text, Position: position_text
         };
 
         $.ajax({
