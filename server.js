@@ -23,10 +23,12 @@ var customer = require('./routes/customer');
 var item = require('./routes/item');
 var order = require('./routes/order');
 var staff = require('./routes/staff');
+var customer_orders = require('./routes/customer-orders_routes');
 
 app.use('/customer', allowCrossDomain, customer);
 app.use('/item', allowCrossDomain, item);
 app.use('/order', allowCrossDomain, order);
 app.use('/staff', allowCrossDomain, staff);
+app.use('/customer-orders', allowCrossDomain, customer_orders);
 
 app.listen(5252);
