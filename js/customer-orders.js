@@ -13,7 +13,6 @@ $(document).ready(function () {
                 width: "10%"
             },
             { data: "Customer_Name" }
- 
         ]
     });
     
