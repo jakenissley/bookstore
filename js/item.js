@@ -49,7 +49,8 @@ $(document).ready(function () {
             { data: "Item_id" },
             { data: "Name" },
             { data: "Type" },
-            { data: "Price" }
+            { data: "Price",
+              render: $.fn.dataTable.render.number(',', '.', 2, '$') }
         ]
     });
     $('#table-id tbody').on('click', 'tr', function () {

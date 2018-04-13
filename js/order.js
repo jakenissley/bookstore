@@ -23,7 +23,7 @@ function format(d) {
         '</tr>' +
         '<tr>' +
         '<td>Total Price:</td>' +
-        '<td>' + d.Total_price + '</td>' +
+        '<td>' + "$" + d.Total_price + '</td>' +
         '<td>Employee Ssn:</td>' +
         '<td>' + d.Employee_ssn + '</td>' +
         '</tr>' +
@@ -48,7 +48,8 @@ $(document).ready(function () {
             { data: "Order_id" },
             { data: "Item_name" },
             { data: "Customer_name" },
-            { data: "Total_price" }
+            { data: "Total_price", 
+              render: $.fn.dataTable.render.number(',', '.', 2, '$')}
         ]
     });
 
