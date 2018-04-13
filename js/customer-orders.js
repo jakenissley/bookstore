@@ -1,3 +1,22 @@
+/* Formatting function for row details - modify as you need */
+function format(thisCustomersItems) {
+        var trs = '';
+        for(i in thisCustomersItems)
+        {
+            trs += 
+            '<tr>' +
+            '<td>Name:</td>' +
+            '<td>' + thisCustomersItems[i].Item_Name + '</td>' +
+            '<td>ID:</td>' +
+            '<td>' + thisCustomersItems[i].Item_ID + '</td>' +
+            '</tr>';
+        }
+
+        return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+            trs +
+        '</tbody></table>';
+}
+
 $(document).ready(function () {
     var table = $('#table-id').DataTable({
         ajax: "http://localhost:5252/customer-orders/all",
@@ -12,6 +31,7 @@ $(document).ready(function () {
                 },
                 width: "10%"
             },
+            { data: "Id_no"},
             { data: "Customer_Name" }
         ]
     });
@@ -28,9 +48,17 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-            console.log(row.data());
-            // ajax get here using row.data()
-            row.child(format(row.data())).show();
+            let customerIdNo = row.data().Id_no;
+            let ajaxUrl = 'http://localhost:5252/customer-orders/getCustomerItems/' + customerIdNo;
+
+            // ajax GET here using ajaxURL created above
+            var thisCustomersItems = $.ajax({
+                url: ajaxUrl,
+                async: false,
+                dataType: 'json'
+            }).responseJSON;
+
+            row.child(format(thisCustomersItems)).show();
             tr.addClass('shown');
         }
     });
