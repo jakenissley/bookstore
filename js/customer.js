@@ -1,5 +1,4 @@
 $("#create-customer").hide(); // Hide create-customer div by
-//$("#deleteModal").modal('hide'); // Hide modal by default
 
 /* Formatting function for row details - modify as you need */
 function format(d) {
@@ -125,7 +124,7 @@ function saveClick() {
     let password_input = $("#password").val();
     let email_input = $("#email").val();
 
-    if (name_input == "" || phone_input == "" || address_input == "" || username_input == "" || password_input == "" || email_input == "") {
+    if (name_input || phone_input || address_input || username_input || password_input || email_input == "") {
         alert("Please enter all information.");
     }
     else {

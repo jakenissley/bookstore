@@ -1,4 +1,5 @@
 $("#create-item").hide(); // Hide create-item div by default
+$("#item-director-row").hide();
 
 /* Formatting function for row details - modify as you need */
 function format(d) {
@@ -83,10 +84,6 @@ function doSelectName(id) {
     console.log(id);
 }
 
-
-function doAddressDel(id) {
-}
-
 // Toggle visibility of add new item div
 $("#toggle-item-btn").click(function () {
     $("#create-item").toggle(500);
@@ -110,6 +107,8 @@ function clearItemClick() {
     $("#item-image").val("");
     $("#num-avail").val("");
     $("#price").val("");
+    $("#director").val("");
+    $("#author").val("");
     $("#btn-clear-item").prop('disabled', true); // disable clear button
     $("#btn-save").prop('disabled', true); // disable save button
 }
@@ -127,15 +126,17 @@ function saveClick() {
     let image_input = $("#item-image").val();
     let avail_input = $("#num-avail").val();
     let price_input = $("#price").val();
+    let author_input = $("#author").val();
+    let director_input = $("#director").val();
 
-    if (name_input == "" || pub_input == "" || type_input == "" || subject_input == "" || desc_input == "" || image_input == "" || avail_input == "" || price_input == "") {
+    if (name_input === "" || pub_input === "" || type_input === "" || subject_input === "" || desc_input === "" || image_input === "" || avail_input === "" || price_input === "" ) {
         alert("Please enter all information.");
     }
     else {
         var data = {
             name: name_input, publisher: pub_input, type: type_input,
             subject: subject_input, description: desc_input, image: image_input,
-            num_avail: avail_input, price: price_input
+            num_avail: avail_input, price: price_input, author: author_input, director: director_input
         };
 
         $.ajax({
@@ -172,9 +173,11 @@ function checkAllitemFieldsNonEmpty() {
     let image_text = $("#item-image").val();
     let avail_text = $("#num-avail").val();
     let price_text = $("#price").val();
+    let author_text = $("#author").val();
+    let director_text = $("#director").val();
 
     // Check if all boxes are non-empty
-    if (name_text != "" && pub_text != "" && type_text != "" && subject_text != ""&& desc_text != "" && image_text != "" && avail_text != "" && price_text != "") {
+    if (name_text != "" && pub_text != "" && type_text != "" && subject_text != ""&& desc_text != "" && image_text != "" && avail_text != "" && price_text != "" && (author_text != "" || director_text != "")) {
         $("#btn-save").prop('disabled', false); // Enable the save button
     }
     else {
@@ -182,13 +185,28 @@ function checkAllitemFieldsNonEmpty() {
     }
 
     // Check if at least one box has text
-    if (name_text != "" || pub_text != "" || type_text != "" || subject_text != "" || desc_text != "" || image_text != "" || avail_text != "" || price_text != "") {
+    if (name_text != "" || pub_text != "" || type_text != "" || subject_text != "" || desc_text != "" || image_text != "" || avail_text != "" || price_text != "" || (author_text != "" || director_text != "")) {
         $("#btn-clear-item").prop('disabled', false); // Enable the clear button
     }
     else {
         $("#btn-clear-item").prop('disabled', true); // disable the clear button
     }
 }
+
+function checkItemType(){
+    if($("#type").val() === "Book" || $("#type").val() === "Periodical"){
+        $("#item-author-row").show(500);
+        $("#item-director-row").hide();
+        $("#director").val("");
+        $("#btn-save").prop('disabled', true);
+    }else{
+        $("#item-author-row").hide();
+        $("#author").val("");
+        $("#item-director-row").show(500);
+        $("#btn-save").prop('disabled', true);
+    }
+}
+
 // Call checkAllitemFieldsNonEmpty whenever any text boxes modified
 $("#name-item").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
@@ -200,6 +218,7 @@ $("#subject").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
 $("#type").on('input', function (e) {
+    checkItemType();
     checkAllitemFieldsNonEmpty();
 });
 $("#description").on('input', function (e) {
@@ -213,6 +232,11 @@ $("#num-avail").on('input', function (e) {
 });    
 $("#price").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
-
+});
+$("#director").on('input', function(e) {
+    checkAllitemFieldsNonEmpty();
+});
+$("#author").on('input', function(e) {
+    checkAllitemFieldsNonEmpty();
 });
 
