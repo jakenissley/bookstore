@@ -21,12 +21,12 @@ app.use(function (err, req, res, next) {
 // assign route files to variables
 var customer = require('./routes/customer');
 var item = require('./routes/item');
-//var order = require('.routes/order');
-//var staff = require('./routes/staff');
+var order = require('./routes/order');
+var staff = require('./routes/staff');
 
 app.use('/customer', allowCrossDomain, customer);
 app.use('/item', allowCrossDomain, item);
-//app.use('/order', allowCrossDomain, order);
-//app.use('/staff', allowCrossDomain, staff);
+app.use('/order', allowCrossDomain, order);
+app.use('/staff', allowCrossDomain, staff);
 
 app.listen(5252);
