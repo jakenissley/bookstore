@@ -37,6 +37,102 @@
         </ul>
     </nav>
 
+        <!-- Begin Datatable -->
+        <div class="form-group row" id="current-customers-header" style="padding-top:2%">
+            <div class="col-md-4 offset-md-2">
+                <h3>Current Staff</h3>
+            </div>
+        </div>
+        <div class="col-md-8 offset-md-2">
+            <table id="table-id" class="display">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Select</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <hr>
+        <!-- End Datatable -->
+
+        <!-- Begin create staff div -->
+    <div class="container-fluid" id="create-staff">
+        <div class="form-group row" id="new-staff-header">
+            <div class="col-md-4 offset-md-2">
+                <h3>Create a new staff member</h3>
+            </div>
+        </div>
+        <div class="form-group row" id="name-ssn-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="name">Name</label>
+                <input class="form-control" id="name" type="text" placeholder="Name">
+            </div>
+            <div class="col-md-4">
+                <label for="email">SSN</label>
+                <input class="form-control" id="ssn" type="text" placeholder="123456789">
+            </div>
+        </div>
+        <div class="form-group row" id="birthday-address-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="username">Birthday</label>
+                <input class="form-control" id="birthday" type="text" placeholder="01/01/1970">
+            </div>
+            <div class="col-md-4">
+                <label for="password">Address</label>
+                <input class="form-control" id="address" type="text" placeholder="701 S Nedderman Dr, Arlington, TX 76019">
+            </div>
+        </div>
+        <div class="form-group row" id="sex-salary-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="address">Sex</label>
+                <input class="form-control" id="sex" type="text" placeholder="M or F">
+            </div>
+            <div class="col-md-4">
+                <label for="phone">Salary</label>
+                <input class="form-control" id="salary" type="text" placeholder="40000">
+            </div>
+        </div>
+        <div class="form-group row" id="superssn-position-row">
+            <div class="col-md-4 offset-md-2">
+                <label for="address">Super SSN</label>
+                <input class="form-control" id="superssn" type="text" placeholder="123456789">
+            </div>
+            <div class="col-md-4">
+                <label for="phone">Position</label>
+                <input class="form-control" id="position" type="text" placeholder="Salesperson">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1 offset-md-5">
+                <button class="form-control btn-primary" id="btn-save" disabled>Save</button>
+            </div>
+            <div class="col-md-1">
+                <button class="form-control btn-danger" id="btn-clear-staff" disabled>Clear</button>
+            </div>
+        </div>
+    </div>
+    <!-- End create staff div -->
+
+    <!-- Create Staff Button -->
+    <div class="container-fluid">
+        <div class="form-group row" id="toggle-staff-btn-row">
+            <div class="col-md-2 offset-md-2">
+                <button class="form-control btn-primary" id="toggle-staff-btn">Create New Staff</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>

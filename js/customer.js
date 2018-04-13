@@ -130,7 +130,7 @@ function saveClick() {
     else {
         var data = {
             name: name_input, phone: phone_input, address: address_input,
-            username: username_input, password: password_input, email: email_input, del: false,
+            username: username_input, password: password_input, email: email_input
         };
 
         $.ajax({
