@@ -8,7 +8,7 @@ function format(d) {
         '<td>SSN:</td>' +
         '<td>' + d.Ssn + '</td>' +
         '<td>Super SSN:</td>' +
-        '<td>' + d.Superssn + '</td>' +
+        '<td>' + d.Super_ssn + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Birthday:</td>' +
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false,
                 "render": function (data, type, row, meta) {
-                    var a = '<a data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.Id_no + '\',\'' + row.Name + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
+                    var a = '<a data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>'
                     return a;
                 },
                 width: "10%"

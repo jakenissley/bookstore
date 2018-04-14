@@ -9,6 +9,8 @@ function format(thisCustomersItems) {
             '<td>' + thisCustomersItems[i].Item_Name + '</td>' +
             '<td>ID:</td>' +
             '<td>' + thisCustomersItems[i].Item_ID + '</td>' +
+            '<td>Price:</td>' +
+            '<td>' + '$' + thisCustomersItems[i].Price + '</td>' +
             '</tr>';
         }
 
@@ -26,7 +28,7 @@ $(document).ready(function () {
                 "orderable": false,
                 "searchable": false,
                 "render": function (data, type, row, meta) {
-                    var a = '<a data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>&nbsp;&nbsp;<a onclick="doAddressDel(\'' + row.Id_no + '\',\'' + row.Name + '\')" data-toggle="tooltip" data-placement="bottom" title="Delete Customer"><i class="fa fa-trash" style="cursor: pointer"></i></a>'
+                    var a = '<a data-toggle="tooltip" data-placement="bottom" title="Show More Info"><i id="drop" class="fa fa-angle-right" style="cursor: pointer"></i></a>'
                     return a;
                 },
                 width: "10%"

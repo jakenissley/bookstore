@@ -26,7 +26,7 @@ router.get('/all', function (req, res) {
   //Will this be an issue since customer name has a space in it?
   router.get('/getCustomerItems/:customer_id', function(req, res) {
     var customer_id = req.params.customer_id
-    const query = 'SELECT item.Item_id AS Item_ID, item.Name AS Item_Name FROM orders INNER JOIN item ON orders.Item_id = item.Item_id INNER JOIN customer ON orders.Customer_id = customer.Id_no WHERE customer.Id_no = ?';
+    const query = 'SELECT item.Item_id AS Item_ID, item.Name AS Item_Name, item.Price FROM orders INNER JOIN item ON orders.Item_id = item.Item_id INNER JOIN customer ON orders.Customer_id = customer.Id_no WHERE customer.Id_no = ?';
     connection.query(query,[customer_id], function(err, rows, fields) {
       if (err) {
         console.log(err)

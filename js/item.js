@@ -136,6 +136,7 @@ function saveClick() {
                 $("#btn-save").removeClass("btn-danger").addClass("btn-primary");
                 // Refresh datatable without losing current page
                 $('#table-id').DataTable().ajax.reload();
+                
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
@@ -165,6 +166,7 @@ function addAuthor() {
         data: JSON.stringify(data),
         contentType: "application/json",
         success: function(response) {
+            $('#table-id').DataTable().ajax.reload();
         },
     });
 }
