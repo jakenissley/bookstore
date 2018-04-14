@@ -8,7 +8,7 @@ function format(d) {
         '<td>SSN:</td>' +
         '<td>' + d.Ssn + '</td>' +
         '<td>Super SSN:</td>' +
-        '<td>' + d.Superssn + '</td>' +
+        '<td>' + d.Super_ssn + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Birthday:</td>' +
