@@ -10,7 +10,7 @@ function format(thisCustomersItems) {
             '<td>ID:</td>' +
             '<td>' + thisCustomersItems[i].Item_ID + '</td>' +
             '<td>Price:</td>' +
-            '<td>' + '$' + thisCustomersItems[i].Price + '</td>' +
+            '<td>' + '$' + thisCustomersItems[i].Total_price + '</td>' +
             '</tr>';
         }
 
