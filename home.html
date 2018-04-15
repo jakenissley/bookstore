@@ -42,6 +42,47 @@
         </ul>
     </nav>
 
+    <div class="form-group row" id="auxiliary-functions-header" style="padding-top:2%">
+        <div class="col-md-4 offset-md-4">
+            <h3 align="center">Auxiliary SQL Transactions</h3>
+        </div>
+    </div>
+    <hr>
+
+    <!--Begin update item div-->
+    <div class="container-fluid" id="update-item">
+        <div class="form-group row" id="update-item-header">
+                <div class="col-md-4 offset-md-2">
+                    <h4>Update Price of a Type of Item</h4>
+                </div>
+            </div>
+        <div class="form-group row" id="item-increase-row">
+                <div class="col-md-4 offset-md-2">
+                    <label for="item-type">Select Item Type</label>
+                    <select class="custom-select" id="item-selection">
+                            <option>Book</option>
+                            <option>Movie</option>
+                            <option>Periodical</option>
+                        </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="increase">Enter % Increase in Price</label>
+                    <input class="form-control" id="price-increase" type="text" placeholder="For example: '10'">
+                </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-2 offset-md-5">
+                <button class="form-control btn-primary" id="btn-submit-item-update" disabled>Submit</button>
+            </div>
+        </div>
+
+    </div>
+    <!--End update item div-->
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
 </body>
 
 </html>
