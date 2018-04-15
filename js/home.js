@@ -1,5 +1,8 @@
 //Hide the alert by default
 $('#alert').hide();
+$('#alert-close').click(function() {
+    $('#alert').toggle(500);
+})
 
 /* Begin Update Item Transaction Code */
 console.log($("#item-selection").val());
