@@ -214,6 +214,32 @@ function checkItemType(){
     }
 }
 
+/* Retrieve item types from database and fill in "types" dropdown */
+$.get( "http://localhost:5252/item/getItemTypes", function( data ) {
+    data = jQuery.parseJSON(data);
+    let sendData = data.data;
+    let emptyMessage = "Please Make a Selection"
+    buildItemTypeDropdown(sendData, $("#type"), emptyMessage); // build item-selection dropdown
+});
+
+// Builds dropdown for item type 
+function buildItemTypeDropdown(result, dropdown, emptyMessage)
+{
+    // Remove current options
+    dropdown.html('');
+
+    // Add the empty option with the empty message
+    dropdown.append('<option>' + emptyMessage + '</option>');
+
+    // Check result isnt empty
+    if(result != ''){
+        // Loop through each of the results and append the option to the dropdown
+        $.each(result, function(k, v) {
+            dropdown.append('<option>' + v.Type + '</option>');
+        });
+    }
+}
+
 // Call checkAllitemFieldsNonEmpty whenever any text boxes modified
 $("#name-item").on('input', function (e) {
     checkAllitemFieldsNonEmpty();

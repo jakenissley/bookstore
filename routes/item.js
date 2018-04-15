@@ -99,6 +99,27 @@ router.post('/additem', function (req, res) {
     }
 });
 
+// returns list of item types
+router.get('/getItemTypes', function (req, res){
+    const query = "SELECT item.Type FROM item";
+    connection.query(query, function (err, rows, fields) {
+        if (err) {
+            res.status(400).send("item_routes/getItemTypes error: error retrieving item types");
+        } else {
+            if (rows.length > 0) {
+                let returnData = {};
+                returnData['sEcho'] = 1;
+                returnData['iTotalRecords'] = rows.length;
+                returnData['iTotalDisplayRecords'] = rows.length;
+                returnData['data'] = rows;
+                res.send(JSON.stringify(returnData));
+            } else {
+                res.status(204).send("No Content.")
+            }
+        }
+    });
+});
+
 router.put('/', function (req, res) {
     console.log('got here');
     res.send('complete');
