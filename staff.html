@@ -5,6 +5,7 @@
     <title>Bookstore</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="book.png">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css" />
     <link rel="stylesheet" href="web-fonts-with-css/css/fontawesome-all.min.css" />
@@ -40,36 +41,38 @@
         </ul>
     </nav>
 
-        <!-- Begin Datatable -->
-        <div class="form-group row" id="current-customers-header" style="padding-top:2%">
-            <div class="col-md-4 offset-md-2">
-                <h3>Current Staff</h3>
-            </div>
+    <!-- Begin Datatable -->
+    <div class="form-group row" id="current-customers-header" style="padding-top:2%">
+        <div class="col-md-4 offset-md-2">
+            <h3 class="display-4">Current Staff</h3>
+            <hr>
+            <p class="lead">View the currently employed staff members.</p>
         </div>
-        <div class="col-md-8 offset-md-2">
-            <table id="table-id" class="display">
-                <thead>
-                    <tr>
-                        <th>Select</th>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Salary</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Select</th>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Salary</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <hr>
-        <!-- End Datatable -->
+    </div>
+    <div class="col-md-8 offset-md-2">
+        <table id="table-id" class="display">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <hr>
+    <!-- End Datatable -->
 
-        <!-- Begin create staff div -->
+    <!-- Begin create staff div -->
     <div class="container-fluid" id="create-staff">
         <div class="form-group row" id="new-staff-header">
             <div class="col-md-4 offset-md-2">
@@ -141,4 +144,5 @@
     <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
     <script type="text/javascript" src="js/staff.js"></script>
 </body>
+
 </html>

@@ -12,68 +12,70 @@
 </head>
 
 <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand mt-xl-0" href="home.html" style="background:white; color:#007bff; border-radius: 8px; padding: inherit">
-                <img src="book.png" width="30" height="30" class="d-inline-block align-top" alt="" />ookstore</a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="customer.html">Customer
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="item.html">Items</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="order.html">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="staff.html">Staff</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Customer-orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-            </ul>
-        </nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand mt-xl-0" href="home.html" style="background:white; color:#007bff; border-radius: 8px; padding: inherit">
+            <img src="book.png" width="30" height="30" class="d-inline-block align-top" alt="" />ookstore</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="customer.html">Customer
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="item.html">Items</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="order.html">Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="staff.html">Staff</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Customer-orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+        </ul>
+    </nav>
 
-        <!-- Begin Datatable -->
-        <div class="form-group row" id="current-customers-header" style="padding-top:2%">
-            <div class="col-md-4 offset-md-2">
-                <h3>Current Customers</h3>
-            </div>
+    <!-- Begin Datatable -->
+    <div class="form-group row" id="current-customers-header" style="padding-top:2%">
+        <div class="col-md-4 offset-md-2">
+            <h3 class="display-4">Customer Orders</h3>
+            <hr>
+            <p class="lead">View previous orders done by different customers.</p>
         </div>
-        <div class="col-md-8 offset-md-2">
-            <table id="table-id" class="display">
-                <thead>
-                    <tr>
-                        <th>Select</th>
-                        <th>ID</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Select</th>
-                        <th>ID</th>
-                        <th>Name</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <hr>
-        <!-- End Datatable -->
+    </div>
+    <div class="col-md-8 offset-md-2">
+        <table id="table-id" class="display">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Select</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <hr>
+    <!-- End Datatable -->
 
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
-        <script type="text/javascript" src="js/customer-orders.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+    <script type="text/javascript" src="js/customer-orders.js"></script>
 
-    </body>
+</body>
 
-    </html>
+</html>

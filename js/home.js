@@ -1,9 +1,12 @@
+//Hide the alert by default
+$('#alert').hide();
+
 /* Begin Update Item Transaction Code */
 console.log($("#item-selection").val());
 $("#price-increase").on('input', function () {
     let increase_text = $("#price-increase").val();
 
-    if(increase_text != ""){
+    if (increase_text != "") {
         $("#btn-submit-item-update").prop('disabled', false); // Enable the submit button for item-update
     }
     else {
@@ -11,19 +14,19 @@ $("#price-increase").on('input', function () {
     }
 });
 
-function itemIncreaseSubmitClick(){
+function itemIncreaseSubmitClick() {
     let increase_double = parseFloat($("#price-increase").val());
-    if(isNaN(increase_double)){
+    if (isNaN(increase_double)) {
         alert("Please enter a number.");
     }
-    else{
+    else {
         increase_double = increase_double / 100; // convert to percentage
         increase_double += 1; // add one so it is now an increase
         let increase_text = increase_double.toString();
         let item_selection = $("#item-selection").val();
 
 
-        let data = {increase: increase_text, item_type: item_selection};
+        let data = { increase: increase_text, item_type: item_selection };
 
         $.ajax({
             url: "http://localhost:5252/home/updateItemPrice",
@@ -31,7 +34,8 @@ function itemIncreaseSubmitClick(){
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (response) {
-                alert("Success! Check the 'Item' page to view the new price.");
+                $('#alert').toggle(500);
+                //alert("Success! Check the 'Item' page to view the new price.");
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
