@@ -22,6 +22,36 @@ router.post('/updateItemPrice', function (req, res) {
         });  
     }
 });
+/* End Update Item Transaction Code */
+
+/* Begin Return Amount Transaction Code */
+router.post('/returnAmount', function (req, res){
+    let start_date = req.body.date + " 00:00:00.00";
+    let end_date = req.body.date + " 23:59:59.999"
+    let id = req.body.customer;
+    let type = req.body.type;
+    var query = "SELECT COUNT(*) AS amount FROM orders WHERE Order_date BETWEEN '" + 
+    start_date + "' AND '" + end_date + 
+    "' AND Customer_id = " + id + 
+    " AND Item_id = (SELECT Item_id FROM item WHERE item.Type = '" + type + "')";
+    connection.query(query, function (err, rows, fields) {
+        if (err) {
+            res.status(400).send("home_routes/returnAmount error: error retrieving amount");
+        } else {
+            if (rows.length > 0) {
+                let returnData = {};
+                returnData['sEcho'] = 1;
+                returnData['iTotalRecords'] = rows.length;
+                returnData['iTotalDisplayRecords'] = rows.length;
+                returnData['data'] = rows;
+                res.send(JSON.stringify(returnData));
+            } else {
+                res.status(204).send("No Content.")
+            }
+        }
+    });
+});
+/* End Return Amount Transaction Code */
 
 // returns list of item types
 router.get('/getItemTypes', function (req, res){
@@ -44,6 +74,6 @@ router.get('/getItemTypes', function (req, res){
     });
 });
 
-/* End Update Item Transaction Code */
+
 
 module.exports = router;

@@ -1,11 +1,11 @@
 //Hide the alert by default
 $('#alert').hide();
-$('#alert-close').click(function() {
+$('#alert-close').click(function () {
     $('#alert').toggle(500);
 })
 
 /* Begin Update Item Transaction Code */
-function checkUpdateItemInputsFilled() {
+function checkTotalAmountInputsFilled() {
     let increase_text = $("#price-increase").val();
     let selection_text = $("#item-selection").val();
 
@@ -18,11 +18,11 @@ function checkUpdateItemInputsFilled() {
 };
 
 $("#price-increase").on('input', function (e) {
-    checkUpdateItemInputsFilled();
+    checkTotalAmountInputsFilled();
 });
 
 $("#item-selection").on('input', function (e) {
-    checkUpdateItemInputsFilled();
+    checkTotalAmountInputsFilled();
 });
 
 function itemIncreaseSubmitClick() {
@@ -36,10 +36,10 @@ function itemIncreaseSubmitClick() {
         let increase_text = increase_double.toString();
         let item_selection = $("#item-selection").val();
 
-        if(item_selection == "Please Make a Selection"){
+        if (item_selection == "Please Make a Selection") {
             alert("Please select an item type.")
         }
-        else{
+        else {
             let data = { increase: increase_text, item_type: item_selection };
 
             $.ajax({
@@ -63,9 +63,76 @@ $("#btn-submit-item-update").click(itemIncreaseSubmitClick);
 
 /* End Update Item Transaction Code */
 
+/* Begin Total Amount Purchased Code */
+function checkTotalAmountInputsFilled() {
+    let customer = $("#customer-selection").val();
+    console.log(customer);
+    let type = $("#return-item-selection").val();
+    console.log(type);
+    let date = $('#year').val() + '-' + $('#month').val() + '-' + $('#day').val();
+    console.log(date);
+
+    if (customer != "" && type != "Please Make a Selection" && date != "") {
+        $("#btn-return-amount").prop('disabled', false); // Enable the submit button for return-amount
+    }
+    else {
+        $("#btn-return-amount").prop('disabled', true); // disable the submit button for return-amount
+    }
+};
+
+$("#customer-selection").on('input', function (e) {
+    checkTotalAmountInputsFilled();
+});
+
+$("#return-item-selection").on('input', function (e) {
+    checkTotalAmountInputsFilled();
+});
+
+$("#day").on('input', function (e) {
+    checkTotalAmountInputsFilled();
+});
+
+$("#month").on('input', function (e) {
+    checkTotalAmountInputsFilled();
+});
+
+$("#year").on('input', function (e) {
+    checkTotalAmountInputsFilled();
+});
+
+function itemReturnAmountSubmitClick() {
+    let customer = $("#customer-selection").val();
+    let type = $("#return-item-selection").val();
+    let date = $('#year').val() + '-' + $('#month').val() + '-' + $('#day').val();
+
+    let data = {
+        customer: customer, 
+        item_type: type, 
+        date: date
+    };
+
+    $.ajax({
+        url: "http://localhost:5252/home/returnAmount",
+        type: "get",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function (response) {
+            data = jQuery.parseJSON(data);
+            let amount = data.amount;
+            alert(amount);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+            alert("Unsuccessful.");
+        }
+    });
+}
+$("#btn-return-amount").click(itemReturnAmountSubmitClick);
+/* End Total Amount Purchased Code */
+
 /* Build Item Type Dropdowns */
 // AJAX GET to get item types and call buildItemTypeDropdown
-$.get( "http://localhost:5252/home/getItemTypes", function( data ) {
+$.get("http://localhost:5252/home/getItemTypes", function (data) {
     data = jQuery.parseJSON(data);
     let sendData = data.data;
     let emptyMessage = "Please Make a Selection"
@@ -74,8 +141,7 @@ $.get( "http://localhost:5252/home/getItemTypes", function( data ) {
 });
 
 // Builds dropdown for item type 
-function buildItemTypeDropdown(result, dropdown, emptyMessage)
-{
+function buildItemTypeDropdown(result, dropdown, emptyMessage) {
     // Remove current options
     dropdown.html('');
 
@@ -83,9 +149,9 @@ function buildItemTypeDropdown(result, dropdown, emptyMessage)
     dropdown.append('<option>' + emptyMessage + '</option>');
 
     // Check result isnt empty
-    if(result != ''){
+    if (result != '') {
         // Loop through each of the results and append the option to the dropdown
-        $.each(result, function(k, v) {
+        $.each(result, function (k, v) {
             dropdown.append('<option>' + v.Type + '</option>');
         });
     }
