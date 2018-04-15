@@ -104,29 +104,19 @@ function itemReturnAmountSubmitClick() {
     let customer = $("#customer-selection").val();
     let type = $("#return-item-selection").val();
     let date = $('#year').val() + '-' + $('#month').val() + '-' + $('#day').val();
+    let itemReturnAmountURL = 'http://localhost:5252/home/returnAmount/' + customer + '/' + type + '/' + date;
+    console.log(itemReturnAmountURL);
 
-    let data = {
-        customer: customer, 
-        item_type: type, 
-        date: date
-    };
-
-    $.ajax({
-        url: "http://localhost:5252/home/returnAmount",
-        type: "get",
-        data: JSON.stringify(data),
-        contentType: "application/json",
-        success: function (response) {
-            data = jQuery.parseJSON(data);
-            let amount = data.amount;
-            alert(amount);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-            alert("Unsuccessful.");
-        }
+    // AJAX GET to get amount of that item purchased
+    $.get(itemReturnAmountURL, function (data) {
+        data = jQuery.parseJSON(data);
+        console.log(data.data[0].amount);
+        let recievedData = data.data;
+        let amount = recievedData[0].amount;
+        alert(amount);
     });
 }
+
 $("#btn-return-amount").click(itemReturnAmountSubmitClick);
 /* End Total Amount Purchased Code */
 
@@ -134,10 +124,10 @@ $("#btn-return-amount").click(itemReturnAmountSubmitClick);
 // AJAX GET to get item types and call buildItemTypeDropdown
 $.get("http://localhost:5252/home/getItemTypes", function (data) {
     data = jQuery.parseJSON(data);
-    let sendData = data.data;
+    let recievedData = data.data;
     let emptyMessage = "Please Make a Selection"
-    buildItemTypeDropdown(sendData, $("#item-selection"), emptyMessage); // build item-selection dropdown
-    buildItemTypeDropdown(sendData, $("#return-item-selection"), emptyMessage); // build return-item-selection dropdown
+    buildItemTypeDropdown(recievedData, $("#item-selection"), emptyMessage); // build item-selection dropdown
+    buildItemTypeDropdown(recievedData, $("#return-item-selection"), emptyMessage); // build return-item-selection dropdown
 });
 
 // Builds dropdown for item type 
