@@ -107,7 +107,7 @@ function saveClick() {
     let password_input = $("#password").val();
     let email_input = $("#email").val();
 
-    if (name_input || phone_input || address_input || username_input || password_input || email_input == "") {
+    if (name_input == "" || phone_input == "" || address_input == "" || username_input == "" || password_input == "" || email_input == "") {
         alert("Please enter all information.");
     }
     else {

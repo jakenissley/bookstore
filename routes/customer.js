@@ -63,6 +63,28 @@ router.post('/add', function (req, res) {
   }
 });
 
+// Return customer IDs and names
+router.get('/getCustomers', function (req, res) {
+  const query = "SELECT Id_no AS Cust_ID, Name AS Name FROM customer";
+  connection.query(query, function (err, rows, fields) {
+    if (err) {
+      res.status(400).send("customer/getCustomers error: error retrieving customers");
+    } else {
+      if (rows.length > 0) {
+        let returnData = {};
+        returnData['sEcho'] = 1;
+        returnData['iTotalRecords'] = rows.length;
+        returnData['iTotalDisplayRecords'] = rows.length;
+        returnData['data'] = rows;
+        res.send(JSON.stringify(returnData));
+      } else {
+        res.status(204).send("No Content.")
+      }
+    }
+  });
+
+});
+
 router.put('/', function (req, res) {
   console.log('got here');
   res.send('complete');

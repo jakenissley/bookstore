@@ -120,7 +120,7 @@ function itemReturnAmountSubmitClick() {
 $("#btn-return-amount").click(itemReturnAmountSubmitClick);
 /* End Total Amount Purchased Code */
 
-/* Build Item Type Dropdowns */
+/* Dropdown fillers */
 // AJAX GET to get item types and call buildItemTypeDropdown
 $.get("http://localhost:5252/home/getItemTypes", function (data) {
     data = jQuery.parseJSON(data);
@@ -146,4 +146,28 @@ function buildItemTypeDropdown(result, dropdown, emptyMessage) {
         });
     }
 }
-/* End Build Item Type Dropdowns */
+
+$.get("http://localhost:5252/customer/getCustomers", function (data) {
+    data = jQuery.parseJSON(data);
+    let recievedData = data.data;
+    let emptyMessage = "Please Make a Selection"
+    buildCustomerDropdown(recievedData, $("#customer-selection"), emptyMessage); // build item-selection dropdown
+});
+
+function buildCustomerDropdown(result, dropdown, emptyMessage) {
+    // Remove current options
+    dropdown.html('');
+
+    // Add the empty option with the empty message
+    dropdown.append('<option>' + emptyMessage + '</option>');
+
+    // Check result isnt empty
+    if (result != '') {
+        // Loop through each of the results and append the option to the dropdown
+        $.each(result, function (k, v) {
+            dropdown.append('<option value="' + v.Cust_ID + '">' + v.Name + '</option>');
+        });
+    }
+}
+
+/* End Dropdown fillers */
