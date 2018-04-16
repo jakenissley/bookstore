@@ -36,12 +36,13 @@ router.post('/add', function (req, res) {
     res.status(406).send("Blank input.");
   }
   else {
-    connection.query('INSERT INTO orders SET ?', newOrder, function (err, resp) {
+    connection.query('INSERT INTO orders SET ?;', newOrder, function (err, resp) {
       if (err) {
         console.log(err);
         res.status(400).send("Insertion error.");
       } else {
         res.send('Save successful');
+        connection.query('UPDATE item SET item.No_available = item.No_available - 1 WHERE item.Item_id = ?;', newOrder.Item_id);
       }
     });
   }
