@@ -35,7 +35,7 @@ CREATE TABLE `customer` (
   `Address` varchar(256) DEFAULT NULL,
   `Username` varchar(12) DEFAULT NULL,
   `Password` varchar(12) DEFAULT NULL,
-  `Created_date` datetime DEFAULT NULL,
+  `Created_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `Email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -142,7 +142,7 @@ CREATE TABLE `orders` (
   `Order_id` int(11) NOT NULL,
   `Item_id` int(11) NOT NULL,
   `Customer_id` int(11) NOT NULL,
-  `Order_date` datetime NOT NULL,
+  `Order_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Total_price` double NOT NULL,
   `Employee_ssn` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
