@@ -82,7 +82,6 @@ router.get('/getCustomers', function (req, res) {
       }
     }
   });
-
 });
 
 router.put('/', function (req, res) {

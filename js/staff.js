@@ -62,6 +62,7 @@ $(document).ready(function () {
     });
 });
 
+//form js
 function saveClick() {
     $("#btn-save").prop('disabled', true);
     $("#btn-save").removeClass("btn-primary").addClass("btn-danger");
