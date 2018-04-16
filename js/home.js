@@ -5,7 +5,7 @@ $('#alert-close').click(function () {
 })
 
 /* Begin Update Item Transaction Code */
-function checkTotalAmountInputsFilled() {
+function checkItemIncreaseInputsFilled() {
     let increase_text = $("#price-increase").val();
     let selection_text = $("#item-selection").val();
 
@@ -18,11 +18,11 @@ function checkTotalAmountInputsFilled() {
 };
 
 $("#price-increase").on('input', function (e) {
-    checkTotalAmountInputsFilled();
+    checkItemIncreaseInputsFilled();
 });
 
 $("#item-selection").on('input', function (e) {
-    checkTotalAmountInputsFilled();
+    checkItemIncreaseInputsFilled();
 });
 
 function itemIncreaseSubmitClick() {
