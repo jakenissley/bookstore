@@ -1,6 +1,3 @@
-//Hide modal by default
-$('#modal').hide();
-
 //Hide the alert by default
 $('#alert').hide();
 $('#alert-close').click(function () {
@@ -120,7 +117,6 @@ function itemReturnAmountSubmitClick() {
         let body = "Customer " + name + " has purchased " + amount + " items on " + date + ".";
         $('#modal-body').html(body);
         $('#modal').modal('toggle');
-        //alert(amount);
     });
 }
 
