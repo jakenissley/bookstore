@@ -1,3 +1,6 @@
+//Hide modal by default
+$('#modal').hide();
+
 //Hide the alert by default
 $('#alert').hide();
 $('#alert-close').click(function () {
@@ -102,6 +105,7 @@ $("#year").on('input', function (e) {
 
 function itemReturnAmountSubmitClick() {
     let customer = $("#customer-selection").val();
+    let name = $("#customer-selection option:selected").text();
     let type = $("#return-item-selection").val();
     let date = $('#year').val() + '-' + $('#month').val() + '-' + $('#day').val();
     let itemReturnAmountURL = 'http://localhost:5252/home/returnAmount/' + customer + '/' + type + '/' + date;
@@ -113,7 +117,10 @@ function itemReturnAmountSubmitClick() {
         console.log(data.data[0].amount);
         let recievedData = data.data;
         let amount = recievedData[0].amount;
-        alert(amount);
+        let body = "Customer " + name + " has purchased " + amount + " items on " + date + ".";
+        $('#modal-body').html(body);
+        $('#modal').modal('toggle');
+        //alert(amount);
     });
 }
 
