@@ -6,6 +6,7 @@ function format(d) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
+        '<td><img src=' + d.Item_image + ' width="50" height="70"></td>' +
         '<td>ID:</td>' +
         '<td>' + d.Item_id + '</td>' +
         '<td>Name:</td>' +
@@ -14,6 +15,7 @@ function format(d) {
         '<td>' + d.Author_name + '</td>' +
         '</tr>' +
         '<tr>' +
+        '<td></td>' +
         '<td>Publisher:</td>' +
         '<td>' + d.Publisher + '</td>' +
         '<td>Type:</td>' +
@@ -22,6 +24,7 @@ function format(d) {
         '<td>' + d.No_available + '</td>' +
         '</tr>' +
         '<tr>' +
+        '<td></td>' +
         '<td>Subject:</td>' +
         '<td>' + d.Subject_name + '</td>' +
         '<td>Description:</td>' +
