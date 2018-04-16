@@ -1,5 +1,6 @@
 //hide new order by default
 $('#create-order').hide();
+$("#btn-save").prop('disabled', true);
 
 /* Formatting function for row details - modify as you need */
 function format(d) {
