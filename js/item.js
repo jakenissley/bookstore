@@ -214,6 +214,57 @@ function checkItemType(){
     }
 }
 
+/* Dropdown fillers */
+// AJAX GET to get Publishers and call buildItemTypeDropdown
+$.get("http://localhost:5252/item/getPublishers", function (data) {
+    data = jQuery.parseJSON(data);
+    let recievedData = data.data;
+    let emptyMessage = "Please Make a Selection"
+    buildPublisherDropdown(recievedData, $("#publisher"), emptyMessage); // build item-selection dropdown
+});
+
+// Builds dropdown for publisher 
+function buildPublisherDropdown(result, dropdown, emptyMessage) {
+    // Remove current options
+    dropdown.html('');
+
+    // Add the empty option with the empty message
+    dropdown.append('<option>' + emptyMessage + '</option>');
+
+    // Check result isnt empty
+    if (result != '') {
+        // Loop through each of the results and append the option to the dropdown
+        $.each(result, function (k, v) {
+            dropdown.append('<option>' + v.Name + '</option>');
+        });
+    }
+}
+
+// AJAX GET to get subjects and call buildSubjectDropdown
+$.get("http://localhost:5252/item/getSubjects", function (data) {
+    data = jQuery.parseJSON(data);
+    let recievedData = data.data;
+    let emptyMessage = "Please Make a Selection"
+    buildSubjectDropdown(recievedData, $("#subject"), emptyMessage); // build item-selection dropdown
+});
+
+// Builds dropdown for subject
+function buildSubjectDropdown(result, dropdown, emptyMessage) {
+    // Remove current options
+    dropdown.html('');
+
+    // Add the empty option with the empty message
+    dropdown.append('<option>' + emptyMessage + '</option>');
+
+    // Check result isnt empty
+    if (result != '') {
+        // Loop through each of the results and append the option to the dropdown
+        $.each(result, function (k, v) {
+            dropdown.append('<option value="' + v.Subject_id + '">' + v.Subject_name + '</option>');
+        });
+    }
+}
+
 /* Retrieve item types from database and fill in "types" dropdown */
 $.get( "http://localhost:5252/item/getItemTypes", function( data ) {
     data = jQuery.parseJSON(data);

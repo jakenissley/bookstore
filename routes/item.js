@@ -99,6 +99,49 @@ router.post('/additem', function (req, res) {
     }
 });
 
+// returns list of Publishers
+router.get('/getPublishers', function (req, res){
+    const query = "SELECT publisher.Name FROM publisher";
+    connection.query(query, function (err, rows, fields) {
+        if (err) {
+            res.status(400).send("item/getPublisher error: error retrieving publishers");
+        } else {
+            if (rows.length > 0) {
+                let returnData = {};
+                returnData['sEcho'] = 1;
+                returnData['iTotalRecords'] = rows.length;
+                returnData['iTotalDisplayRecords'] = rows.length;
+                returnData['data'] = rows;
+                res.send(JSON.stringify(returnData));
+            } else {
+                res.status(204).send("No Content.")
+            }
+        }
+    });
+});
+
+// returns list of Subjects
+router.get('/getSubjects', function (req, res){
+    const query = "SELECT * FROM subject";
+    connection.query(query, function (err, rows, fields) {
+        if (err) {
+            res.status(400).send("item/getSubject error: error retrieving publishers");
+        } else {
+            if (rows.length > 0) {
+                let returnData = {};
+                returnData['sEcho'] = 1;
+                returnData['iTotalRecords'] = rows.length;
+                returnData['iTotalDisplayRecords'] = rows.length;
+                returnData['data'] = rows;
+                res.send(JSON.stringify(returnData));
+            } else {
+                res.status(204).send("No Content.")
+            }
+        }
+    });
+});
+
+
 // returns list of item types
 router.get('/getItemTypes', function (req, res){
     const query = "SELECT item.Type FROM item";

@@ -154,6 +154,7 @@ function buildItemTypeDropdown(result, dropdown, emptyMessage) {
     }
 }
 
+// AJAX GET to get customers and call buildCustomerDropdown
 $.get("http://localhost:5252/customer/getCustomers", function (data) {
     data = jQuery.parseJSON(data);
     let recievedData = data.data;
