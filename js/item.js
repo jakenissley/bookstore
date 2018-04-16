@@ -215,7 +215,7 @@ function checkItemType(){
 }
 
 /* Dropdown fillers */
-// AJAX GET to get Publishers and call buildItemTypeDropdown
+// AJAX GET to get Publishers and call buildPublisherTypeDropdown
 $.get("http://localhost:5252/item/getPublishers", function (data) {
     data = jQuery.parseJSON(data);
     let recievedData = data.data;
@@ -264,8 +264,8 @@ function buildSubjectDropdown(result, dropdown, emptyMessage) {
         });
     }
 }
-
-/* Retrieve item types from database and fill in "types" dropdown */
+/*
+ Retrieve item types from database and fill in "types" dropdown
 $.get( "http://localhost:5252/item/getItemTypes", function( data ) {
     data = jQuery.parseJSON(data);
     let sendData = data.data;
@@ -290,6 +290,7 @@ function buildItemTypeDropdown(result, dropdown, emptyMessage)
         });
     }
 }
+*/
 
 // Call checkAllitemFieldsNonEmpty whenever any text boxes modified
 $("#name-item").on('input', function (e) {
