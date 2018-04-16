@@ -163,6 +163,32 @@ function checkAllStaffFieldsNonEmpty() {
     }
 }
 
+/* Dropdown fillers */
+// AJAX GET to get Superssn of supervisors and call buildSuperDropdown
+$.get("http://localhost:5252/staff/getSuper", function (data) {
+    data = jQuery.parseJSON(data);
+    let recievedData = data.data;
+    let emptyMessage = "Please Make a Selection"
+    buildSuperDropdown(recievedData, $("#superssn"), emptyMessage); // build item-selection dropdown
+});
+
+// Builds dropdown for publisher 
+function buildSuperDropdown(result, dropdown, emptyMessage) {
+    // Remove current options
+    dropdown.html('');
+
+    // Add the empty option with the empty message
+    dropdown.append('<option>' + emptyMessage + '</option>');
+
+    // Check result isnt empty
+    if (result != '') {
+        // Loop through each of the results and append the option to the dropdown
+        $.each(result, function (k, v) {
+            dropdown.append('<option value="' + v.Ssn + '">' + v.Name + '</option>');
+        });
+    }
+}
+
 // Call checkAllStaffFieldsNonEmpty whenever any text boxes modified
 $("#name").on('input', function (e) {
     checkAllStaffFieldsNonEmpty();
