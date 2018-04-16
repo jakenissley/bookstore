@@ -50,7 +50,7 @@ router.post('/add', function (req, res) {
 // Return total price of order
 router.get('/totalPrice/:item_id', function (req, res){
   let id = req.params.item_id;
-  var query = "SELECT item.Price FROM item WHERE item.Item_id = " + id;
+  var query = "SELECT item.Price FROM item WHERE item.No_available > 0 AND item.Item_id = " + id;
   connection.query(query, function (err, rows, fields) {
       if (err) {
           res.status(400).send("order/totalPrice error: error retrieving price");

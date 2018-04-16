@@ -146,7 +146,7 @@ function checkAllOrderFieldsNonEmpty() {
     let price_text = $("#price").val();
 
     // Check if all boxes are non-empty
-    if (customer_text != "" && item_text != "" && employee_text != "" && price_text != "") {
+    if (customer_text != "Please Make a Selection" && item_text != "Please Make a Selection" && employee_text != "Please Make a Selection" && price_text != "None available") {
         $("#btn-save").prop('disabled', false); // Enable the save button
     }
     else {
@@ -154,7 +154,7 @@ function checkAllOrderFieldsNonEmpty() {
     }
 
     // Check if at least one box has text
-    if (customer_text != "" || item_text != "" || employee_text != "" || price_text != "") {
+    if (customer_text != "Please Make a Selection" || item_text != "Please Make a Selection" || employee_text != "Please Make a Selection" || price_text != "None available") {
         $("#btn-clear-order").prop('disabled', false); // Enable the clear button
     }
     else {
@@ -168,10 +168,16 @@ function getTotalPrice() {
 
     // AJAX GET to get amount of that item purchased
     $.get(itemReturnAmountURL, function (data) {
-        data = jQuery.parseJSON(data);
-        let recievedData = data.data;
-        let price = recievedData[0].Price;
-        $('#price').val(price);
+        try{
+            data = jQuery.parseJSON(data)
+            let recievedData = data.data;
+            let price = recievedData[0].Price;
+            $('#price').val(price);
+            checkAllOrderFieldsNonEmpty();
+        }catch{
+            $('#price').val("None available");
+            checkAllOrderFieldsNonEmpty();
+        }
     });
 }
 
@@ -252,12 +258,8 @@ $("#customer").on('input', function (e) {
     checkAllOrderFieldsNonEmpty();
 });
 $("#item").on('input', function (e) {
-    checkAllOrderFieldsNonEmpty();
     getTotalPrice();
 });
 $("#employee").on('input', function (e) {
-    checkAllOrderFieldsNonEmpty();
-});
-$("#price").on('input', function (e) {
     checkAllOrderFieldsNonEmpty();
 });
