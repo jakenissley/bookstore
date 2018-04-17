@@ -1,5 +1,6 @@
 $("#create-item").hide(); // Hide create-item div by default
 $("#item-director-row").hide();
+$("#item-author-row").hide();
 
 /* Formatting function for row details - modify as you need */
 function format(d) {
@@ -92,15 +93,16 @@ $("#toggle-item-btn").click(function () {
 // Clear item boxes when btn-clear-item button clicked
 function clearItemClick() {
     $("#name-item").val(""); //clear name box
-    $("#publisher").val("");
-    $("#type").val("");
-    $("#subject").val("");
+    $("#publisher").val("Please Make a Selection");
+    $("#type").val("Please Make a Selection");
+    $("#subject").val("Please Make a Selection");
     $("#description").val("");
     $("#item-image").val("");
     $("#num-avail").val("");
     $("#price").val("");
     $("#director").val("");
     $("#author").val("");
+    checkItemType(); // hides author/director row
     $("#btn-clear-item").prop('disabled', true); // disable clear button
     $("#btn-save").prop('disabled', true); // disable save button
 }
@@ -186,16 +188,17 @@ function checkAllitemFieldsNonEmpty() {
     let price_text = $("#price").val();
     let author_text = $("#author").val();
     let director_text = $("#director").val();
+    let makeSelection_text = "Please Make a Selection"; 
 
     // Check if all boxes are non-empty
-    if (name_text != "" && pub_text != "" && type_text != "" && subject_text != ""&& desc_text != "" && image_text != "" && avail_text != "" && price_text != "" && (author_text != "" || director_text != "")) {
+    if (name_text != "" && pub_text != makeSelection_text && type_text != makeSelection_text && subject_text != makeSelection_text && desc_text != "" && image_text != "" && avail_text != "" && price_text != "" && (author_text != "" || director_text != "")) {
         $("#btn-save").prop('disabled', false); // Enable the save button
     }
     else {
         $("#btn-save").prop('disabled', true); // Disable save button if one or both of boxes or empty
     }
     // Check if at least one box has text
-    if (name_text != "" || pub_text != "" || type_text != "" || subject_text != "" || desc_text != "" || image_text != "" || avail_text != "" || price_text != "" || (author_text != "" || director_text != "")) {
+    if (name_text != "" || pub_text != makeSelection_text || type_text != makeSelection_text || subject_text != makeSelection_text || desc_text != "" || image_text != "" || avail_text != "" || price_text != "" || (author_text != "" || director_text != "")) {
         $("#btn-clear-item").prop('disabled', false); // Enable the clear button
     }
     else {
@@ -209,10 +212,16 @@ function checkItemType(){
         $("#item-director-row").hide();
         $("#director").val("");
         $("#btn-save").prop('disabled', true);
-    }else{
+    }else if($("#type").val() === "Movie"){ 
         $("#item-author-row").hide();
         $("#author").val("");
         $("#item-director-row").show(500);
+        $("#btn-save").prop('disabled', true);
+    }else{ // item type is equal to "Please Make a Selection" so hide author and director
+        $("#item-author-row").hide(500);
+        $("#author").val("");
+        $("#item-director-row").hide(500);
+        $("#director").val("");
         $("#btn-save").prop('disabled', true);
     }
 }
