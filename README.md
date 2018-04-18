@@ -21,11 +21,14 @@ hypothetical bookstore with the ability to keep track of items, customers, staff
 
 ## Instructions <a name="instructions"></a>
 To run the program please make sure you have node.js installed and some sort of SQL server (preferably MAMP). 
-1. First start up your SQL server and create a database 'BOOKSTORE', then import the database information from 'bookstore.sql' located 
-in the main diretory
-2. Using node.js, make sure you are in the '/bookstore' directory and run the command: 
+1. Install dependencies, using node.js run the following command in the '/bookstore' directory to install dependencies:
+```
+npm install
+```
+2. Then, start up your SQL server, set the port to 8889, and create a database 'BOOKSTORE', then import the database information from 'bookstore.sql' located in the main diretory
+3. Using node.js, make sure you are in the '/bookstore' directory and run the command: 
 ```
 node ./server.js
 ```
-3. Once all of the backend is up and running, go ahead and open the home.html file with any web browser located in the '/bookstore' 
+4. Once all of the backend is up and running, go ahead and open the home.html file with any web browser located in the '/bookstore' 
 directory and everything should be running!
