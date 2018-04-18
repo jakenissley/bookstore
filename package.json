@@ -1,7 +1,7 @@
 {
   "name": "bookstore",
   "version": "1.0.0",
-  "description": "-------------------------------------------------------------------------------------------------------------------------------------------\r | Table of Contents               |\r |---------------------------------|\r | 1. [Introduction](#intro)       |\r | 2. [Framework](#information)    |\r | 3. [Instructions](#instructions)|",
+  "description": "Frontend/Backend for CSE3330 Databases",
   "main": "configs.js",
   "dependencies": {
     "body-parser": "^1.18.2",
