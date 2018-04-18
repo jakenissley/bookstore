@@ -54,15 +54,17 @@ $(document).ready(function () {
             { data: "Item_id" },
             { data: "Name" },
             { data: "Type" },
-            { data: "Price",
-              render: $.fn.dataTable.render.number(',', '.', 2, '$') }
+            {
+                data: "Price",
+                render: $.fn.dataTable.render.number(',', '.', 2, '$')
+            }
         ]
     });
 
     $('#table-id tbody').on('click', '#drop', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        
+
         $(this, '#drop').toggleClass("fa-angle-right fa-angle-down");
         if (row.child.isShown()) {
             // This row is already open - close it
@@ -120,7 +122,7 @@ function saveClick() {
     let avail_input = $("#num-avail").val();
     let price_input = $("#price").val();
 
-    if (name_input === "" || pub_input === "" || type_input === "" || subject_input === "" || desc_input === "" || image_input === "" || avail_input === "" || price_input === "" ) {
+    if (name_input === "" || pub_input === "" || type_input === "" || subject_input === "" || desc_input === "" || image_input === "" || avail_input === "" || price_input === "") {
         alert("Please enter all information.");
     }
     else {
@@ -152,9 +154,9 @@ function saveClick() {
             }
         });
 
-        
+
     }
-    
+
 }
 $("#btn-save").click(saveClick);
 
@@ -171,7 +173,7 @@ function addAuthor() {
         type: "post",
         data: JSON.stringify(data),
         contentType: "application/json",
-        success: function(response) {
+        success: function (response) {
             $('#table-id').DataTable().ajax.reload();
         },
     });
@@ -189,10 +191,10 @@ function checkAllitemFieldsNonEmpty() {
     let price_text = $("#price").val();
     let author_text = $("#author").val();
     let director_text = $("#director").val();
-    let makeSelection_text = "Please Make a Selection"; 
+    let makeSelection_text = "Please Make a Selection";
 
     // Check if all boxes are non-empty
-    if (name_text != "" && pub_text != makeSelection_text && type_text != makeSelection_text && subject_text != makeSelection_text && desc_text != "" && image_text != "" && avail_text != "" && price_text != "" && (author_text != "" || director_text != "")) {
+    if (name_text != "" && pub_text != makeSelection_text && type_text != makeSelection_text && subject_text != makeSelection_text && desc_text != "" && image_text != "" && avail_text != "" && avail_text >= 0 && price_text != "" && price_text > 0 && (author_text != "" || director_text != "")) {
         $("#btn-save").prop('disabled', false); // Enable the save button
     }
     else {
@@ -207,18 +209,18 @@ function checkAllitemFieldsNonEmpty() {
     }
 }
 
-function checkItemType(){
-    if($("#type").val() === "Book" || $("#type").val() === "Periodical"){
+function checkItemType() {
+    if ($("#type").val() === "Book" || $("#type").val() === "Periodical") {
         $("#item-author-row").show(500);
         $("#item-director-row").hide();
         $("#director").val("");
         $("#btn-save").prop('disabled', true);
-    }else if($("#type").val() === "Movie"){ 
+    } else if ($("#type").val() === "Movie") {
         $("#item-author-row").hide();
         $("#author").val("");
         $("#item-director-row").show(500);
         $("#btn-save").prop('disabled', true);
-    }else{ // item type is equal to "Please Make a Selection" so hide author and director
+    } else { // item type is equal to "Please Make a Selection" so hide author and director
         $("#item-author-row").hide(500);
         $("#author").val("");
         $("#item-director-row").hide(500);
@@ -277,33 +279,6 @@ function buildSubjectDropdown(result, dropdown, emptyMessage) {
         });
     }
 }
-/*
- Retrieve item types from database and fill in "types" dropdown
-$.get( "http://localhost:5252/item/getItemTypes", function( data ) {
-    data = jQuery.parseJSON(data);
-    let sendData = data.data;
-    let emptyMessage = "Please Make a Selection"
-    buildItemTypeDropdown(sendData, $("#type"), emptyMessage); // build item-selection dropdown
-});
-
-// Builds dropdown for item type 
-function buildItemTypeDropdown(result, dropdown, emptyMessage)
-{
-    // Remove current options
-    dropdown.html('');
-
-    // Add the empty option with the empty message
-    dropdown.append('<option>' + emptyMessage + '</option>');
-
-    // Check result isnt empty
-    if(result != ''){
-        // Loop through each of the results and append the option to the dropdown
-        $.each(result, function(k, v) {
-            dropdown.append('<option>' + v.Type + '</option>');
-        });
-    }
-}
-*/
 
 // Call checkAllitemFieldsNonEmpty whenever any text boxes modified
 $("#name-item").on('input', function (e) {
@@ -327,14 +302,28 @@ $("#item-image").on('input', function (e) {
 });
 $("#num-avail").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
-});    
+    if ($("#num-avail").val() < 0) {
+        $("#num-avail").removeClass("is-valid");
+        $("#num-avail").addClass("is-invalid");
+    } else if ($("#num-avail").val() >= 0) {
+        $("#num-avail").removeClass("is-invalid");
+        $("#num-avail").addClass("is-valid");
+    }
+});
 $("#price").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
+    if ($("#price").val() < 0) {
+        $("#price").removeClass("is-valid");
+        $("#price").addClass("is-invalid");
+    } else if ($("#price").val() > 0) {
+        $("#price").removeClass("is-invalid");
+        $("#price").addClass("is-valid");
+    }
 });
-$("#director").on('input', function(e) {
+$("#director").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
-$("#author").on('input', function(e) {
+$("#author").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
 
