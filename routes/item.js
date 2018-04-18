@@ -51,7 +51,7 @@ router.post('/addauthor', function (req, res){
                         console.log(err);
                         res.status(400).send("Insertion error.");
                     } else {
-                        
+                        res.send('Author Insertion successful');
                     }
                 });
             }
@@ -61,7 +61,7 @@ router.post('/addauthor', function (req, res){
                         console.log(err);
                         res.status(400).send("Insertion error.");
                     } else {
-                        
+                        res.send('Director Insertion successful');
                     }
                 });
             }

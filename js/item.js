@@ -133,6 +133,7 @@ function saveClick() {
         $.ajax({
             url: "http://localhost:5252/item/additem",
             type: "post",
+            async: false,
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (response) {
@@ -140,8 +141,8 @@ function saveClick() {
                 $("#btn-save").prop('disabled', false);
                 $("#btn-save").removeClass("btn-danger").addClass("btn-primary");
                 // Refresh datatable without losing current page
-                $('#table-id').DataTable().ajax.reload();
-                
+                var table = $('#table-id').DataTable();
+                table.ajax.reload(null, true);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
