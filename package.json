@@ -1,7 +1,7 @@
 {
   "name": "bookstore",
   "version": "1.0.0",
-  "description": "",
+  "description": "-------------------------------------------------------------------------------------------------------------------------------------------\r | Table of Contents               |\r |---------------------------------|\r | 1. [Introduction](#intro)       |\r | 2. [Framework](#information)    |\r | 3. [Instructions](#instructions)|",
   "main": "configs.js",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -18,5 +18,14 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakenissley/bookstore.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/jakenissley/bookstore/issues"
+  },
+  "homepage": "https://github.com/jakenissley/bookstore#readme"
 }
