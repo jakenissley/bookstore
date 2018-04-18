@@ -9,7 +9,7 @@
 | 3. [Instructions](#instructions)|
 
 ## Introduction <a name="intro"></a>
-A frontend/backend web interface designed for a project in CSE330 - Databases. This is designed for a
+A frontend/backend web interface designed for a project using node.js and Express to connect to a SQL database. For a projet in CSE330 - Databases. This is designed for a
 hypothetical bookstore with the ability to keep track of items, customers, staff, sales, and other needs.
 
 ## Framework <a name="information"></a>
