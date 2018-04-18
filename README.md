@@ -2,22 +2,23 @@
 #### Bookstore Frontend/Backend for CSE3330
 #### Created by: [Jake Nissley](https://github.com/jakenissley), [Luke Hardin](https://github.com/lhardin491), and [Andrew Hernandez](https://github.com/dreamlap)
 -------------------------------------------------------------------------------------------------------------------------------------------
-| Table of Contents               |
-|---------------------------------|
-| 1. [Introduction](#intro)       |
-| 2. [Framework](#information)    |
-| 3. [Instructions](#instructions)|
+| Table of Contents                            |
+|----------------------------------------------|
+| 1. [Introduction](#intro)                    |
+| 2. [Framework/Dependencies](#information)    |
+| 3. [Instructions](#instructions)             |
 
 ## Introduction <a name="intro"></a>
-A frontend/backend web interface designed for a project using node.js and Express to connect to a SQL database. For a projet in CSE330 - Databases. This is designed for a
-hypothetical bookstore with the ability to keep track of items, customers, staff, sales, and other needs.
+A frontend/backend web interface designed for a project in CSE330 - Databases. This is designed for a hypothetical bookstore with the 
+ability to keep track of items, customers, staff, sales, and other needs. Uses node.js and Express to connect to a SQL database.
 
-## Framework <a name="information"></a>
+## Framework/Dependencies <a name="information"></a>
 * [jQuery](https://jquery.com/)
 * [MySQL](https://www.mysql.com/)
 * [Bootstrap](https://getbootstrap.com/)
 * [node.js](https://nodejs.org/en/)
 * [DataTables](https://datatables.net/)
+* [Express](https://expressjs.com/)
 
 ## Instructions <a name="instructions"></a>
 To run the program please make sure you have node.js installed and some sort of SQL server (preferably MAMP). 
