@@ -302,20 +302,31 @@ $("#item-image").on('input', function (e) {
 });
 $("#num-avail").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
-    if ($("#num-avail").val() < 0) {
+    let enteredNum = parseInt($("#num-avail").val());
+    // check if enteredNum is actually a number
+    if(isNaN(enteredNum)){
         $("#num-avail").removeClass("is-valid");
         $("#num-avail").addClass("is-invalid");
-    } else if ($("#num-avail").val() >= 0) {
-        $("#num-avail").removeClass("is-invalid");
-        $("#num-avail").addClass("is-valid");
-    }
+    } else if (enteredNum < 0) {
+            $("#num-avail").removeClass("is-valid");
+            $("#num-avail").addClass("is-invalid");
+    } else if (enteredNum >= 0) {
+            $("#num-avail").removeClass("is-invalid");
+            $("#num-avail").addClass("is-valid");
+        }
 });
 $("#price").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
-    if ($("#price").val() < 0) {
+    let enteredNum = parseFloat($("#price").val());
+    console.log(enteredNum);
+    // check if enteredNum is actually a number
+    if(isNaN(enteredNum)){
         $("#price").removeClass("is-valid");
         $("#price").addClass("is-invalid");
-    } else if ($("#price").val() > 0) {
+    } else if (enteredNum < 0) {
+        $("#price").removeClass("is-valid");
+        $("#price").addClass("is-invalid");
+    } else if (enteredNum > 0) {
         $("#price").removeClass("is-invalid");
         $("#price").addClass("is-valid");
     }
