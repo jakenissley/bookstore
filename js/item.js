@@ -302,9 +302,10 @@ $("#item-image").on('input', function (e) {
 });
 $("#num-avail").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
-    let enteredNum = parseInt($("#num-avail").val());
-    // check if enteredNum is actually a number
-    if(isNaN(enteredNum)){
+    let enteredNum = $("#num-avail").val();
+    let hasWhiteSpace = detectWhiteSpace(enteredNum);
+    // check if enteredNum is actually a number with no whitespace
+    if(hasWhiteSpace === true || +enteredNum != +enteredNum || enteredNum === ""){
         $("#num-avail").removeClass("is-valid");
         $("#num-avail").addClass("is-invalid");
     } else if (enteredNum < 0) {
@@ -317,10 +318,10 @@ $("#num-avail").on('input', function (e) {
 });
 $("#price").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
-    let enteredNum = parseFloat($("#price").val());
-    console.log(enteredNum);
-    // check if enteredNum is actually a number
-    if(isNaN(enteredNum)){
+    let enteredNum = $("#price").val();
+    let hasWhiteSpace = detectWhiteSpace(enteredNum);
+    // check if enteredNum is actually a number with no whitespace
+    if(hasWhiteSpace === true || +enteredNum != +enteredNum || enteredNum === ""){
         $("#price").removeClass("is-valid");
         $("#price").addClass("is-invalid");
     } else if (enteredNum < 0) {
@@ -337,4 +338,15 @@ $("#director").on('input', function (e) {
 $("#author").on('input', function (e) {
     checkAllitemFieldsNonEmpty();
 });
+
+function detectWhiteSpace(enteredString){
+    if (/\s/.test(enteredString)) {
+        // It has any kind of whitespace
+        return true;
+        console.log("has whitespace");
+    }
+    console.log(enteredString);
+    console.log("no whitespace");
+    return false;
+}
 
