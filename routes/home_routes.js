@@ -37,7 +37,7 @@ router.get('/returnAmount/:cust_id/:item_type/:date', function (req, res){
     " AND Item_id IN (SELECT Item_id FROM item WHERE item.Type = '" + type + "')";
     connection.query(query, function (err, rows, fields) {
         if (err) {
-            res.status(400).send("hoe_routes/returnAmount error: error retrieving amount");
+            res.status(400).send("home_routes/returnAmount error: error retrieving amount");
             console.log(err);
         } else {
             if (rows.length > 0) {
@@ -57,7 +57,7 @@ router.get('/returnAmount/:cust_id/:item_type/:date', function (req, res){
 
 // returns list of item types
 router.get('/getItemTypes', function (req, res){
-    const query = "SELECT item.Type FROM item";
+    const query = "SELECT item.Type FROM item GROUP BY item.Type";
     connection.query(query, function (err, rows, fields) {
         if (err) {
             res.status(400).send("home_routes/getItemTypes error: error retrieving item types");
