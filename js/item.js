@@ -343,10 +343,7 @@ function detectWhiteSpace(enteredString){
     if (/\s/.test(enteredString)) {
         // It has any kind of whitespace
         return true;
-        console.log("has whitespace");
     }
-    console.log(enteredString);
-    console.log("no whitespace");
     return false;
 }
 
