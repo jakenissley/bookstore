@@ -130,9 +130,10 @@ $("#toggle-order-btn").click(function () {
 
 // Clear Staff boxes when btn-clear-customer button clicked
 function clearOrderClick() {
-    $("#customer").val(""); //clear name box
-    $("#item").val("");
-    $("#employee").val("");
+    let emptySelectionText = "Please Make a Selection";
+    $("#customer").val(emptySelectionText); //clear name box
+    $("#item").val(emptySelectionText);
+    $("#employee").val(emptySelectionText);
     $("#price").val("");
     $("#btn-clear-order").prop('disabled', true); // disable clear button
     $("#btn-save").prop('disabled', true); // disable clear button
